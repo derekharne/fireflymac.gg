@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /downloads/
+
+Sitemap: https://fireflymac.gg/sitemap.xml

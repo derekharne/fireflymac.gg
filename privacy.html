@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — Firefly</title>
+  <link rel="icon" href="icon.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" />
+  <style>
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #C89B3C;
+      --gold-light: #F0E6A2;
+      --firefly: #C9FF3A;
+      --firefly-dim: rgba(201,255,58,0.09);
+      --dark: #070F18;
+      --dark-card: #0B1825;
+      --dark-border: #132030;
+      --text: #B8C8DF;
+      --text-muted: #8BA3BF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--dark);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      bottom: -30%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 140vw;
+      height: 140vw;
+      background: radial-gradient(circle, rgba(150,220,20,0.11) 0%, rgba(100,180,15,0.07) 25%, rgba(60,130,10,0.035) 50%, rgba(30,80,10,0.01) 68%, transparent 80%);
+      pointer-events: none; z-index: 0;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 48px;
+      background: rgba(10,22,34,0.93);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--dark-border);
+    }
+
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo svg { width: 26px; height: 26px; }
+    .nav-logo span { font-size: 1.15rem; font-weight: 800; letter-spacing: 0.05em; color: #fff; }
+
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.88rem; font-weight: 500; transition: color 0.2s; padding: 8px 4px; }
+    .nav-links a:hover { color: #fff; }
+    .nav-links a.active, .nav-links a[aria-current="page"] { color: #fff; }
+
+    /* ── Page ── */
+    .page {
+      position: relative; z-index: 1;
+      max-width: 720px; margin: 0 auto;
+      padding: 80px 24px 120px;
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(200,155,60,0.1); border: 1px solid rgba(200,155,60,0.28);
+      border-radius: 100px; padding: 5px 14px;
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
+      color: var(--gold); text-transform: uppercase; margin-bottom: 26px;
+    }
+
+    .page h1 {
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-weight: 900; line-height: 1.1;
+      letter-spacing: -0.025em; color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .page h1 span {
+      color: #D4F07A;
+      text-shadow: 0 0 28px rgba(201,245,80,0.3), 0 0 70px rgba(201,245,80,0.12);
+    }
+
+    .last-updated {
+      font-size: 0.8rem; color: var(--text-muted); margin-bottom: 56px;
+    }
+
+    /* ── Summary card ── */
+    .summary-card {
+      background: var(--firefly-dim);
+      border: 1px solid rgba(201,255,58,0.2);
+      border-radius: 14px; padding: 24px 28px;
+      margin-bottom: 20px;
+      width: 100%; text-align: left;
+    }
+
+    .summary-card p {
+      font-size: 0.95rem; color: var(--text); line-height: 1.72; font-weight: 500;
+    }
+
+    /* ── Policy sections ── */
+    .policy-section {
+      background: var(--dark-card);
+      border: 1px solid var(--dark-border);
+      border-radius: 14px;
+      padding: 28px 32px;
+      margin-bottom: 14px;
+      width: 100%; text-align: left;
+    }
+
+    .policy-section h2 {
+      font-size: 1.05rem; font-weight: 700; color: #fff;
+      margin-bottom: 14px;
+      display: flex; align-items: center; gap: 10px;
+    }
+
+    .section-icon {
+      width: 30px; height: 30px; border-radius: 8px;
+      background: var(--firefly-dim);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem; flex-shrink: 0;
+    }
+
+    .policy-section p {
+      font-size: 0.9rem; color: var(--text-muted); line-height: 1.78;
+    }
+
+    .policy-section p + p { margin-top: 12px; }
+
+    /* ── Footer ── */
+    footer {
+      position: relative; z-index: 1; text-align: center;
+      padding: 26px 24px;
+      border-top: 1px solid var(--dark-border);
+      color: var(--text-muted); font-size: 0.78rem; line-height: 1.7;
+    }
+    footer a { color: var(--text-muted); text-decoration: none; padding: 8px 4px; }
+    footer a:hover { color: #fff; }
+    .sep { margin: 0 8px; opacity: 0.35; }
+
+    /* ── Skip link ── */
+    .skip-link {
+      position: absolute; top: -100%; left: 16px;
+      background: var(--firefly); color: var(--dark); padding: 8px 16px;
+      border-radius: 8px; font-size: 0.88rem; font-weight: 600;
+      z-index: 200; text-decoration: none;
+    }
+    .skip-link:focus { top: 12px; }
+
+    /* ── Focus styles ── */
+    :focus-visible {
+      outline: 2px solid var(--firefly);
+      outline-offset: 2px;
+    }
+
+    /* ── Reduced motion ── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      html { scroll-behavior: auto; }
+    }
+
+    /* ── Mobile responsive ── */
+    @media (max-width: 768px) {
+      nav { padding: 14px 20px; }
+      .nav-links { gap: 16px; }
+      .nav-links a { font-size: 0.82rem; }
+      .page { padding: 48px 16px 80px; }
+      .policy-section { padding: 22px 20px; }
+    }
+
+    @media (max-width: 480px) {
+      nav { flex-wrap: wrap; justify-content: center; gap: 10px; }
+      .nav-links { gap: 12px; }
+    }
+
+    /* ── Stars & Moon ── */
+    .moon {
+      position: fixed;
+      top: 7%; left: 7%;
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: transparent;
+      box-shadow: -14px -5px 0 1px rgba(160,190,220,0.14);
+      transform: rotate(-30deg);
+      pointer-events: none; z-index: 0;
+    }
+    .stars {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      pointer-events: none; z-index: 0;
+    }
+    .star {
+      position: absolute;
+      background: #fff;
+      border-radius: 50%;
+    }
+
+    /* ── Firefly trails ── */
+    @keyframes ff-pulse {
+      0%, 100% { opacity: 0.9; }
+      50% { opacity: 0.25; }
+    }
+  </style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+<div class="moon"></div>
+
+<!-- ── Nav ── -->
+<nav>
+  <a class="nav-logo" href="index.html">
+    <img src="icon.png" alt="Firefly" style="width:28px;height:28px;border-radius:6px;" />
+    <span>Firefly</span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="changelog.html">Changelog</a></li>
+    <li><a href="privacy.html" class="active" aria-current="page">Privacy Policy</a></li>
+    <li><a href="support.html">Support</a></li>
+  </ul>
+</nav>
+
+<main id="main">
+<!-- ── Content ── -->
+<div class="page">
+  <div class="badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Privacy</div>
+  <h1>Your data stays <span>on your device.</span></h1>
+  <p class="last-updated">Last updated: March 2026</p>
+
+  <div class="summary-card">
+    <p>Firefly collects no personal data whatsoever. Your gameplay recordings are saved directly to a location you choose on your own device and never transmitted anywhere. The developer has no access to your recordings, your gameplay, or any information about how you use the app.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2><span class="section-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--firefly)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg></span> Overview</h2>
+    <p>This Privacy Policy describes how Firefly ("the app", "we") handles information in connection with your use of the Firefly macOS application. We are committed to being straightforward: Firefly is designed from the ground up to keep everything on your device.</p>
+    <p>By using Firefly, you agree to this policy. If you have any questions, please reach out via the <a href="support.html" style="color:var(--firefly);text-decoration:none;">Support</a> page.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2><span class="section-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--firefly)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 14.14 14.14"/></svg></span> Data Collection</h2>
+    <p>Firefly does not collect, transmit, store remotely, or share any of the following: personal information of any kind, gameplay recordings or video footage, in-game statistics or match history, identifiable user or device information, or any other personal data from your device.</p>
+    <p>There are no advertising frameworks or third-party tracking SDKs included in Firefly.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2><span class="section-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--firefly)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span> Analytics & Crash Reports</h2>
+    <p>Firefly may share basic usage analytics and crash reports with Apple and the developer through Apple's standard platform tools. This information is used solely to identify bugs and improve the stability and quality of the app. No personal information, gameplay recordings, or identifiable hardware information is included in these reports.</p>
+    <p>You can control whether analytics are shared with developers in your Mac's Privacy & Security settings under Analytics & Improvements.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2><span class="section-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--firefly)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V7.5L14.5 2H6a2 2 0 0 0-2 2v4"/><polyline points="14 2 14 8 20 8"/><path d="m3 15 2 2 4-4"/></svg></span> Recordings & Local Storage</h2>
+    <p>Firefly records your League of Legends gameplay and saves those recordings to a location you select on your own device. This can be your internal drive, an external hard drive, a network share, or any other location you choose. Firefly developers have no knowledge of or access to where you choose to save your files.</p>
+    <p>Recordings are never uploaded to any server. They are yours, stored locally, and fully under your control.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2><span class="section-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--firefly)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span> Screen & Audio Capture Permissions</h2>
+    <p>Firefly requires screen recording and audio capture permissions granted by macOS to record your gameplay. These permissions are used solely to capture the League of Legends game window and its audio. Firefly does not capture any other applications, windows, or system audio outside of the League of Legends client.</p>
+    <p>Captured content is written directly to your chosen save location and is never processed, analyzed, or transmitted by Firefly or its developer.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2><span class="section-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--firefly)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span> Network Access</h2>
+    <p>Firefly makes read-only requests to Riot Games' publicly available Data Dragon API to retrieve game assets such as champion images. This is a one-way download — no personal information, gameplay data, or recordings are included in these requests, and nothing from your device is uploaded to Riot Games or the developer.</p>
+    <p>No other network requests are made. Your recordings and gameplay data never leave your device.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2><span class="section-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--firefly)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></span> Children's Privacy</h2>
+    <p>Firefly does not collect any information from anyone, including children under the age of 13. As no data is collected from any user, Firefly is compliant with COPPA and similar regulations by design.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2><span class="section-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--firefly)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span> Changes to This Policy</h2>
+    <p>If this Privacy Policy is ever updated, the revised version will be posted on this page with an updated date. Any future changes will maintain the same core commitment: no data collection, no data transmission, everything stays on your device.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2><span class="section-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--firefly)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span> Contact</h2>
+    <p>If you have any questions about this Privacy Policy, please contact us through the <a href="support.html" style="color:var(--firefly);text-decoration:none;">Support</a> page.</p>
+  </div>
+</div>
+</main>
+
+<!-- ── Footer ── -->
+<footer>
+  <p>
+    © 2026 Firefly
+    <span class="sep">·</span>
+    <a href="privacy.html">Privacy Policy</a>
+    <span class="sep">·</span>
+    <a href="support.html">Support</a>
+    <span class="sep">·</span>
+    Not affiliated with Riot Games or Apple Inc.
+  </p>
+</footer>
+
+
+<script>
+  // Stars
+  (function() {
+    const sky = document.createElement('div');
+    sky.className = 'stars';
+    document.body.appendChild(sky);
+    for (let i = 0; i < 100; i++) {
+      const el = document.createElement('div');
+      el.className = 'star';
+      const size = (Math.random() * 1.6 + 0.4).toFixed(1);
+      el.style.cssText =
+        'left:' + (Math.random() * 100).toFixed(1) + 'vw;' +
+        'top:' + (Math.random() * 72).toFixed(1) + 'vh;' +
+        'width:' + size + 'px;height:' + size + 'px;' +
+        'opacity:' + (Math.random() * 0.55 + 0.08).toFixed(2);
+      sky.appendChild(el);
+    }
+  })();
+</script>
+
+
+<script>
+(function() {
+  var NS = 'http://www.w3.org/2000/svg';
+  var color = '#C9FF3A';
+  var trails = [
+    // background — left cluster, flying left → right
+    { css: 'position:fixed;left:7vw;top:12vh;width:200px;height:55px;pointer-events:none;z-index:0;overflow:visible;',
+      vw: 200, vh: 55,
+      d: 'M 2 42 C 32 22 62 46 94 30 C 126 14 154 38 182 24 C 192 18 197 15 200 13',
+      gx: 2, gy: 42, ex: 200, ey: 13, delay: '0s' },
+    { css: 'position:fixed;left:16vw;top:58vh;width:180px;height:50px;pointer-events:none;z-index:0;overflow:visible;',
+      vw: 180, vh: 50,
+      d: 'M 2 38 C 28 18 56 42 84 26 C 112 10 140 34 168 20 C 174 15 178 12 180 11',
+      gx: 2, gy: 38, ex: 180, ey: 11, delay: '1.4s' },
+    // background — right cluster, flying right → left
+    { css: 'position:fixed;right:9vw;top:22vh;width:190px;height:55px;pointer-events:none;z-index:0;overflow:visible;',
+      vw: 190, vh: 55,
+      d: 'M 188 44 C 160 26 132 48 102 32 C 72 16 42 40 14 26 C 6 20 2 16 0 14',
+      gx: 188, gy: 44, ex: 0, ey: 14, delay: '0.8s' },
+    { css: 'position:fixed;right:18vw;top:63vh;width:175px;height:50px;pointer-events:none;z-index:0;overflow:visible;',
+      vw: 175, vh: 50,
+      d: 'M 173 36 C 149 18 123 40 97 26 C 71 12 45 34 19 20 C 11 15 5 12 0 10',
+      gx: 173, gy: 36, ex: 0, ey: 10, delay: '2.1s' },
+  ];
+
+  trails.forEach(function(t, i) {
+    var svg = document.createElementNS(NS, 'svg');
+    svg.setAttribute('style', t.css);
+    svg.setAttribute('viewBox', '0 0 ' + t.vw + ' ' + t.vh);
+
+    var defs = document.createElementNS(NS, 'defs');
+
+    // Trail gradient: transparent at tail (left), soft glow at head (right)
+    var gid = 'ffg' + i;
+    var grad = document.createElementNS(NS, 'linearGradient');
+    grad.setAttribute('id', gid);
+    grad.setAttribute('gradientUnits', 'userSpaceOnUse');
+    grad.setAttribute('x1', String(t.gx));
+    grad.setAttribute('y1', String(t.gy));
+    grad.setAttribute('x2', String(t.ex));
+    grad.setAttribute('y2', String(t.ey));
+    [['0%','0'],['55%','0.15'],['100%','0.5']].forEach(function(s) {
+      var stop = document.createElementNS(NS, 'stop');
+      stop.setAttribute('offset', s[0]);
+      stop.setAttribute('stop-color', color);
+      stop.setAttribute('stop-opacity', s[1]);
+      grad.appendChild(stop);
+    });
+
+    // Glow filter for dot
+    var fid = 'fff' + i;
+    var filt = document.createElementNS(NS, 'filter');
+    filt.setAttribute('id', fid);
+    filt.setAttribute('x', '-400%'); filt.setAttribute('y', '-400%');
+    filt.setAttribute('width', '900%'); filt.setAttribute('height', '900%');
+    var blur = document.createElementNS(NS, 'feGaussianBlur');
+    blur.setAttribute('in', 'SourceGraphic');
+    blur.setAttribute('stdDeviation', '2.2');
+    blur.setAttribute('result', 'b');
+    var merge = document.createElementNS(NS, 'feMerge');
+    ['b', 'SourceGraphic'].forEach(function(v) {
+      var mn = document.createElementNS(NS, 'feMergeNode');
+      mn.setAttribute('in', v);
+      merge.appendChild(mn);
+    });
+    filt.appendChild(blur); filt.appendChild(merge);
+
+    defs.appendChild(grad); defs.appendChild(filt);
+    svg.appendChild(defs);
+
+    // Trail path
+    var path = document.createElementNS(NS, 'path');
+    path.setAttribute('d', t.d);
+    path.setAttribute('stroke', 'url(#' + gid + ')');
+    path.setAttribute('stroke-width', '1.4');
+    path.setAttribute('stroke-linecap', 'round');
+    path.setAttribute('fill', 'none');
+    svg.appendChild(path);
+
+    // Pulsing glow dot
+    var g = document.createElementNS(NS, 'g');
+    g.setAttribute('filter', 'url(#' + fid + ')');
+    g.setAttribute('style', 'animation:ff-pulse 2.8s ease-in-out ' + t.delay + ' infinite');
+    var dot = document.createElementNS(NS, 'circle');
+    dot.setAttribute('cx', String(t.ex));
+    dot.setAttribute('cy', String(t.ey));
+    dot.setAttribute('r', '2');
+    dot.setAttribute('fill', '#DEFF88');
+    g.appendChild(dot);
+    svg.appendChild(g);
+
+    document.body.appendChild(svg);
+  });
+})();
+</script>
+
+</body>
+</html>

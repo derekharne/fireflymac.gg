@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support — Firefly</title>
+  <link rel="icon" href="icon.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #C89B3C;
+      --gold-light: #F0E6A2;
+      --firefly: #C9FF3A;
+      --firefly-dim: rgba(201,255,58,0.09);
+      --dark: #070F18;
+      --dark-card: #0B1825;
+      --dark-border: #132030;
+      --text: #B8C8DF;
+      --text-muted: #8BA3BF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--dark);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      bottom: -30%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 140vw;
+      height: 140vw;
+      background: radial-gradient(circle, rgba(150,220,20,0.11) 0%, rgba(100,180,15,0.07) 25%, rgba(60,130,10,0.035) 50%, rgba(30,80,10,0.01) 68%, transparent 80%);
+      pointer-events: none; z-index: 0;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 48px;
+      background: rgba(10,22,34,0.93);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--dark-border);
+    }
+
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo svg { width: 26px; height: 26px; }
+    .nav-logo span { font-size: 1.15rem; font-weight: 800; letter-spacing: 0.05em; color: #fff; }
+
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.88rem; font-weight: 500; transition: color 0.2s; padding: 8px 4px; }
+    .nav-links a:hover { color: #fff; }
+    .nav-links a.active { color: #fff; }
+
+    /* ── Content ── */
+    .page {
+      position: relative; z-index: 1;
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center; padding: 100px 24px 120px;
+    }
+
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(200,155,60,0.1); border: 1px solid rgba(200,155,60,0.28);
+      border-radius: 100px; padding: 5px 14px;
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
+      color: var(--gold); text-transform: uppercase; margin-bottom: 26px;
+    }
+
+    .page h1 {
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-weight: 900; line-height: 1.1;
+      letter-spacing: -0.025em; color: #fff;
+      margin-bottom: 16px;
+    }
+
+    .page h1 span {
+      color: #D4F07A;
+      text-shadow: 0 0 28px rgba(201,245,80,0.3), 0 0 70px rgba(201,245,80,0.12);
+    }
+
+    .page > p {
+      font-size: 1rem; color: var(--text-muted);
+      max-width: 440px; line-height: 1.72; margin-bottom: 48px;
+    }
+
+    .email-link {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--firefly-dim);
+      border: 1px solid rgba(201,255,58,0.25);
+      color: var(--firefly);
+      text-decoration: none;
+      border-radius: 12px; padding: 14px 28px;
+      font-size: 1rem; font-weight: 600;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .email-link:hover { background: rgba(201,255,58,0.14); border-color: rgba(201,255,58,0.4); }
+    .email-link svg { flex-shrink: 0; }
+
+    /* ── Footer ── */
+    footer {
+      position: relative; z-index: 1; text-align: center;
+      padding: 26px 24px;
+      border-top: 1px solid var(--dark-border);
+      color: var(--text-muted); font-size: 0.78rem; line-height: 1.7;
+    }
+    footer a { color: var(--text-muted); text-decoration: none; padding: 8px 4px; }
+    footer a:hover { color: #fff; }
+    .sep { margin: 0 8px; opacity: 0.35; }
+
+    /* ── Stars & Moon ── */
+    .moon {
+      position: fixed;
+      top: 7%; left: 7%;
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: transparent;
+      box-shadow: -14px -5px 0 1px rgba(160,190,220,0.14);
+      transform: rotate(-30deg);
+      pointer-events: none; z-index: 0;
+    }
+    .stars {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      pointer-events: none; z-index: 0;
+    }
+    .star {
+      position: absolute;
+      background: #fff;
+      border-radius: 50%;
+    }
+
+    /* ── Skip link ── */
+    .skip-link {
+      position: absolute; top: -100%; left: 16px;
+      background: var(--firefly); color: var(--dark); padding: 8px 16px;
+      border-radius: 8px; font-size: 0.88rem; font-weight: 600;
+      z-index: 200; text-decoration: none;
+    }
+    .skip-link:focus { top: 12px; }
+
+    /* ── Focus styles ── */
+    :focus-visible {
+      outline: 2px solid var(--firefly);
+      outline-offset: 2px;
+    }
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--firefly);
+      outline-offset: 2px;
+    }
+
+    /* ── Reduced motion ── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      html { scroll-behavior: auto; }
+    }
+
+    /* ── Mobile responsive ── */
+    @media (max-width: 768px) {
+      nav { padding: 14px 20px; }
+      .nav-links { gap: 16px; }
+      .nav-links a { padding: 8px 4px; font-size: 0.82rem; }
+      .page { padding: 64px 20px 80px; }
+      .support-card { padding: 32px 24px; }
+      footer a { padding: 8px 4px; }
+    }
+
+    @media (max-width: 480px) {
+      nav { flex-wrap: wrap; justify-content: center; gap: 10px; }
+      .nav-links { gap: 12px; }
+    }
+
+    /* ── Firefly trails ── */
+    @keyframes ff-pulse {
+      0%, 100% { opacity: 0.9; }
+      50% { opacity: 0.25; }
+    }
+  </style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+<div class="moon"></div>
+
+<!-- ── Nav ── -->
+<nav>
+  <a class="nav-logo" href="index.html">
+    <img src="icon.png" alt="Firefly" style="width:28px;height:28px;border-radius:6px;" />
+    <span>Firefly</span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="changelog.html">Changelog</a></li>
+    <li><a href="privacy.html">Privacy Policy</a></li>
+    <li><a href="support.html" class="active" aria-current="page">Support</a></li>
+  </ul>
+</nav>
+
+<!-- ── Content ── -->
+<main id="main">
+<div class="page">
+  <div class="badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Support</div>
+  <h1>We're here to <span>help.</span></h1>
+  <p>Have a question, found a bug, or just need a hand getting set up? Send us an email and we'll try to help!</p>
+
+  <a class="email-link" href="mailto:support@fireflymac.gg">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+    support@fireflymac.gg
+  </a>
+</div>
+</main>
+
+<!-- ── Footer ── -->
+<footer>
+  <p>
+    © 2026 Firefly
+    <span class="sep">·</span>
+    <a href="privacy.html">Privacy Policy</a>
+    <span class="sep">·</span>
+    <a href="support.html">Support</a>
+    <span class="sep">·</span>
+    Not affiliated with Riot Games or Apple Inc.
+  </p>
+</footer>
+
+
+<script>
+  // Stars
+  (function() {
+    const sky = document.createElement('div');
+    sky.className = 'stars';
+    document.body.appendChild(sky);
+    for (let i = 0; i < 100; i++) {
+      const el = document.createElement('div');
+      el.className = 'star';
+      const size = (Math.random() * 1.6 + 0.4).toFixed(1);
+      el.style.cssText =
+        'left:' + (Math.random() * 100).toFixed(1) + 'vw;' +
+        'top:' + (Math.random() * 72).toFixed(1) + 'vh;' +
+        'width:' + size + 'px;height:' + size + 'px;' +
+        'opacity:' + (Math.random() * 0.55 + 0.08).toFixed(2);
+      sky.appendChild(el);
+    }
+  })();
+</script>
+
+
+<script>
+(function() {
+  var NS = 'http://www.w3.org/2000/svg';
+  var color = '#C9FF3A';
+  var trails = [
+    // background — left cluster, flying left → right
+    { css: 'position:fixed;left:7vw;top:12vh;width:200px;height:55px;pointer-events:none;z-index:0;overflow:visible;',
+      vw: 200, vh: 55,
+      d: 'M 2 42 C 32 22 62 46 94 30 C 126 14 154 38 182 24 C 192 18 197 15 200 13',
+      gx: 2, gy: 42, ex: 200, ey: 13, delay: '0s' },
+    { css: 'position:fixed;left:16vw;top:58vh;width:180px;height:50px;pointer-events:none;z-index:0;overflow:visible;',
+      vw: 180, vh: 50,
+      d: 'M 2 38 C 28 18 56 42 84 26 C 112 10 140 34 168 20 C 174 15 178 12 180 11',
+      gx: 2, gy: 38, ex: 180, ey: 11, delay: '1.4s' },
+    // background — right cluster, flying right → left
+    { css: 'position:fixed;right:9vw;top:22vh;width:190px;height:55px;pointer-events:none;z-index:0;overflow:visible;',
+      vw: 190, vh: 55,
+      d: 'M 188 44 C 160 26 132 48 102 32 C 72 16 42 40 14 26 C 6 20 2 16 0 14',
+      gx: 188, gy: 44, ex: 0, ey: 14, delay: '0.8s' },
+    { css: 'position:fixed;right:18vw;top:63vh;width:175px;height:50px;pointer-events:none;z-index:0;overflow:visible;',
+      vw: 175, vh: 50,
+      d: 'M 173 36 C 149 18 123 40 97 26 C 71 12 45 34 19 20 C 11 15 5 12 0 10',
+      gx: 173, gy: 36, ex: 0, ey: 10, delay: '2.1s' },
+  ];
+
+  trails.forEach(function(t, i) {
+    var svg = document.createElementNS(NS, 'svg');
+    svg.setAttribute('style', t.css);
+    svg.setAttribute('viewBox', '0 0 ' + t.vw + ' ' + t.vh);
+
+    var defs = document.createElementNS(NS, 'defs');
+
+    // Trail gradient: transparent at tail (left), soft glow at head (right)
+    var gid = 'ffg' + i;
+    var grad = document.createElementNS(NS, 'linearGradient');
+    grad.setAttribute('id', gid);
+    grad.setAttribute('gradientUnits', 'userSpaceOnUse');
+    grad.setAttribute('x1', String(t.gx));
+    grad.setAttribute('y1', String(t.gy));
+    grad.setAttribute('x2', String(t.ex));
+    grad.setAttribute('y2', String(t.ey));
+    [['0%','0'],['55%','0.15'],['100%','0.5']].forEach(function(s) {
+      var stop = document.createElementNS(NS, 'stop');
+      stop.setAttribute('offset', s[0]);
+      stop.setAttribute('stop-color', color);
+      stop.setAttribute('stop-opacity', s[1]);
+      grad.appendChild(stop);
+    });
+
+    // Glow filter for dot
+    var fid = 'fff' + i;
+    var filt = document.createElementNS(NS, 'filter');
+    filt.setAttribute('id', fid);
+    filt.setAttribute('x', '-400%'); filt.setAttribute('y', '-400%');
+    filt.setAttribute('width', '900%'); filt.setAttribute('height', '900%');
+    var blur = document.createElementNS(NS, 'feGaussianBlur');
+    blur.setAttribute('in', 'SourceGraphic');
+    blur.setAttribute('stdDeviation', '2.2');
+    blur.setAttribute('result', 'b');
+    var merge = document.createElementNS(NS, 'feMerge');
+    ['b', 'SourceGraphic'].forEach(function(v) {
+      var mn = document.createElementNS(NS, 'feMergeNode');
+      mn.setAttribute('in', v);
+      merge.appendChild(mn);
+    });
+    filt.appendChild(blur); filt.appendChild(merge);
+
+    defs.appendChild(grad); defs.appendChild(filt);
+    svg.appendChild(defs);
+
+    // Trail path
+    var path = document.createElementNS(NS, 'path');
+    path.setAttribute('d', t.d);
+    path.setAttribute('stroke', 'url(#' + gid + ')');
+    path.setAttribute('stroke-width', '1.4');
+    path.setAttribute('stroke-linecap', 'round');
+    path.setAttribute('fill', 'none');
+    svg.appendChild(path);
+
+    // Pulsing glow dot
+    var g = document.createElementNS(NS, 'g');
+    g.setAttribute('filter', 'url(#' + fid + ')');
+    g.setAttribute('style', 'animation:ff-pulse 2.8s ease-in-out ' + t.delay + ' infinite');
+    var dot = document.createElementNS(NS, 'circle');
+    dot.setAttribute('cx', String(t.ex));
+    dot.setAttribute('cy', String(t.ey));
+    dot.setAttribute('r', '2');
+    dot.setAttribute('fill', '#DEFF88');
+    g.appendChild(dot);
+    svg.appendChild(g);
+
+    document.body.appendChild(svg);
+  });
+})();
+</script>
+
+</body>
+</html>
