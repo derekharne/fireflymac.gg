@@ -153,9 +153,12 @@
       letter-spacing: -0.015em;
     }
 
-    /* Tag pills: New / Improved / Fixed */
+    /* Tag pills: New / Enhancement / Bugfix */
     .cl-section {
       margin-bottom: 14px;
+    }
+    .cl-section + .cl-section {
+      margin-top: 18px;
     }
 
     .cl-tag {
@@ -165,9 +168,9 @@
       border-radius: 4px; padding: 2px 7px;
       margin-bottom: 8px;
     }
-    .cl-tag.new      { background: rgba(201,255,58,0.12); color: var(--firefly); border: 1px solid rgba(201,255,58,0.25); }
-    .cl-tag.improved { background: rgba(100,160,255,0.1);  color: #7EB8FF;        border: 1px solid rgba(100,160,255,0.22); }
-    .cl-tag.fixed    { background: rgba(255,160,80,0.1);   color: #FFB366;        border: 1px solid rgba(255,160,80,0.22); }
+    .cl-tag.new         { background: rgba(201,255,58,0.12); color: var(--firefly); border: 1px solid rgba(201,255,58,0.25); }
+    .cl-tag.enhancement { background: rgba(100,160,255,0.1); color: #7EB8FF;        border: 1px solid rgba(100,160,255,0.22); }
+    .cl-tag.bugfix      { background: rgba(255,160,80,0.1);  color: #FFB366;        border: 1px solid rgba(255,160,80,0.22); }
 
     .cl-section ul {
       list-style: none;
@@ -313,45 +316,21 @@
       <div class="cl-section">
         <span class="cl-tag new">New</span>
         <ul>
-          <li>IMPORTANT! - While old recordings are still compatible new features will only be present on recordings made on 2.0 or later.</li>
-          <li>Enhanced Dashboard
-            <ul>
-              <li>New section at the top of the Dashboard tracking trends, averages and intelligently detects who you've been struggling against.</li>
-              <li>Click any game row to get into all the details of the match.</li>
-              <li>Customize what stat pills show and where they show in the lineup, see only the information you believe is relevant for you!</li>
-              <li>Stats are tracked independently of the recordings, delete the recording when you're done with it but keep the stats.</li>
-            </ul>
-          </li>
-          <li>Improved Recordings Management
-            <ul>
-              <li>Quickly select multiple recordings at once to make changes in mass.</li>
-              <li>Lane matchup data is now tracked on Summoner's Rift.</li>
-              <li>Filter by wins/losses, champion played, matchup, game mode, tags or any combination you'd like!</li>
-            </ul>
-          </li>
-          <li>Improved Timeline
-            <ul>
-              <li>Timeline now includes more detailed information about events. See who killed you, who you helped kill, or what team got that drake including whether or not it was stolen!</li>
-              <li>Towers are now tracked.</li>
-              <li>Gold Tracking added to Timeline.</li>
-              <li>Key level ups are now marked (2/3/6/11/16/18).</li>
-              <li>Timeline events spread out a bit when clumped together.</li>
-            </ul>
-          </li>
-          <li>NEW! Tags and Notes
+          <li>IMPORTANT — Old recordings remain fully playable, but new features only apply to recordings made on 2.0 or later.</li>
+          <li>Tags and Notes
             <ul>
               <li>Create as many tags as you'd like, color code them, see them at a glance, sort by them, etc.</li>
               <li>Every recording now includes a notes section where you can add and format notes about the matchup.</li>
             </ul>
           </li>
-          <li>NEW! Theater Mode - make the video full screen within the app window hiding the UI while doing more in depth reviews without going full screen.</li>
-          <li>NEW! Clips Manager
+          <li>Theater Mode — make the video full screen within the app window, hiding the UI for more in-depth reviews without going full screen.</li>
+          <li>Clips Manager
             <ul>
               <li>Clips are now stored similar to recordings.</li>
               <li>Apply tags, notes, etc just like recordings.</li>
             </ul>
           </li>
-          <li>NEW! Create play montages straight from the app!
+          <li>Create play montages straight from the app!
             <ul>
               <li>Clips has a new toggle at the top for creating montages.</li>
               <li>Select which events you want to include in a montage, fine tune the start and end times on a per event basis.</li>
@@ -359,10 +338,40 @@
               <li>Add your own music to set the tone.</li>
             </ul>
           </li>
-          <li>Quality of Life improvements
+        </ul>
+      </div>
+
+      <div class="cl-section">
+        <span class="cl-tag enhancement">Enhancements</span>
+        <ul>
+          <li>Dashboard overhaul
             <ul>
-              <li>Fleshed out storage retention settings, added auto deleting by either age, space consumed, or both along with an Apply button to instantly trim your library.</li>
-              <li>Black screen on tab out replaced by a gray screen with an icon and some text to prevent YouTube from auto trimming empty black frames and thus desyncing audio on uploads.</li>
+              <li>New section at the top of the Dashboard tracking trends, averages, and intelligently detects who you've been struggling against.</li>
+              <li>Click any game row to get into all the details of the match.</li>
+              <li>Customize what stat pills show and where they show in the lineup — see only the information you believe is relevant for you.</li>
+              <li>Stats are tracked independently of the recordings; delete the recording when you're done with it but keep the stats.</li>
+            </ul>
+          </li>
+          <li>Recordings management
+            <ul>
+              <li>Quickly select multiple recordings at once to make changes in bulk.</li>
+              <li>Lane matchup data is now tracked on Summoner's Rift.</li>
+              <li>Filter by wins/losses, champion played, matchup, game mode, tags, or any combination you'd like.</li>
+            </ul>
+          </li>
+          <li>Timeline
+            <ul>
+              <li>More detailed event information — see who killed you, who you helped kill, or what team got that drake (including whether or not it was stolen).</li>
+              <li>Towers are now tracked.</li>
+              <li>Gold tracking added to Timeline.</li>
+              <li>Key level ups are now marked (2/3/6/11/16/18).</li>
+              <li>Timeline events spread out a bit when clumped together.</li>
+            </ul>
+          </li>
+          <li>Quality of life
+            <ul>
+              <li>Fleshed out storage retention settings — auto-delete by age, space consumed, or both, with an Apply button to instantly trim your library.</li>
+              <li>Black screen on tab-out replaced by a gray screen with an icon and some text, so YouTube no longer auto-trims empty black frames and desyncs audio on uploads.</li>
             </ul>
           </li>
         </ul>
@@ -382,10 +391,16 @@
       <div class="cl-section">
         <span class="cl-tag new">New</span>
         <ul>
-          <li>Ability to minimize to menu bar added.</li>
-          <li>Ability to disable in game audio recording.</li>
-          <li>24 FPS option to save even more space.</li>
-          <li>Ability to choose what game modes are automatically recorded.</li>
+          <li>Minimize to menu bar.</li>
+        </ul>
+      </div>
+
+      <div class="cl-section">
+        <span class="cl-tag enhancement">Enhancements</span>
+        <ul>
+          <li>Option to disable in-game audio recording.</li>
+          <li>24 FPS recording option to save even more space.</li>
+          <li>Choose which game modes are automatically recorded.</li>
         </ul>
       </div>
 
@@ -401,6 +416,7 @@
       <h2>Bugfix</h2>
 
       <div class="cl-section">
+        <span class="cl-tag bugfix">Bugfix</span>
         <ul>
           <li>Fixed a few more edge cases where recordings could fail to start.</li>
         </ul>
@@ -417,8 +433,9 @@
       <h2>Bugfix</h2>
 
       <div class="cl-section">
+        <span class="cl-tag bugfix">Bugfix</span>
         <ul>
-          <li>Fixed a bug that caused recordings to fail in some middle eastern and south asian regions.</li>
+          <li>Fixed a bug that caused recordings to fail in some Middle Eastern and South Asian regions.</li>
         </ul>
       </div>
     </div>
@@ -433,10 +450,11 @@
       <h2>Bugfix</h2>
 
       <div class="cl-section">
+        <span class="cl-tag bugfix">Bugfix</span>
         <ul>
-          <li>Recordings could sometimes fail to start. A .log file is now generated in the recordings directory if a recording fails, if you believe you ran into an unexpected failure please submit the log using the email address on the support page.</li>
-          <li>Brawl and Arena Gamemode's now shown properly.</li>
-          <li>Fixed an incompatibility with the auto updater due to previously targeting the macOS App Store</li>
+          <li>Recordings could sometimes fail to start. A .log file is now generated in the recordings directory when a recording fails — if you believe you ran into an unexpected failure, please submit the log using the email address on the support page.</li>
+          <li>Brawl and Arena game modes now display properly.</li>
+          <li>Fixed an incompatibility with the auto-updater due to previously targeting the macOS App Store.</li>
         </ul>
       </div>
 
