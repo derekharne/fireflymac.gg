@@ -90,14 +90,16 @@ ok "Perms applied"
 
 # ─── Step 4: smoke test ────────────────────────────────────────────────
 # nginx doesn't need a reload for static-file changes, but a quick HEAD
-# against the public URL confirms the new file is reachable. Replace
-# HEALTH_URL via env if your site is on a different host.
-HEALTH_URL=${HEALTH_URL:-https://fireflymac.gg/}
-step "Checking $HEALTH_URL..."
-if curl -fsS --max-time 5 -I "$HEALTH_URL" >/dev/null 2>&1; then
-    ok "Site reachable"
+# against loopback confirms the new file is reachable. We hit 127.0.0.1
+# directly with a Host header (instead of the public hostname) because
+# the server can't resolve its own public IP through hairpin NAT.
+HEALTH_URL=${HEALTH_URL:-http://127.0.0.1/}
+HEALTH_HOST=${HEALTH_HOST:-fireflymac.gg}
+step "Checking $HEALTH_URL (Host: $HEALTH_HOST)..."
+if curl -fsS --max-time 5 -I -H "Host: $HEALTH_HOST" "$HEALTH_URL" >/dev/null 2>&1; then
+    ok "nginx serving site"
 else
-    warn "Health check on $HEALTH_URL failed — nginx may need a reload, or the URL is wrong. Site files are deployed regardless."
+    warn "Health check failed — nginx may need a reload. Site files are deployed regardless."
 fi
 
 echo
