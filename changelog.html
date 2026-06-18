@@ -168,9 +168,11 @@
       border-radius: 4px; padding: 2px 7px;
       margin-bottom: 8px;
     }
-    .cl-tag.new         { background: rgba(201,255,58,0.12); color: var(--firefly); border: 1px solid rgba(201,255,58,0.25); }
-    .cl-tag.enhancement { background: rgba(100,160,255,0.1); color: #7EB8FF;        border: 1px solid rgba(100,160,255,0.22); }
-    .cl-tag.bugfix      { background: rgba(255,160,80,0.1);  color: #FFB366;        border: 1px solid rgba(255,160,80,0.22); }
+    .cl-tag.new         { background: rgba(201,255,58,0.12); color: var(--firefly);    border: 1px solid rgba(201,255,58,0.25); }
+    .cl-tag.enhancement { background: rgba(100,160,255,0.1); color: #7EB8FF;            border: 1px solid rgba(100,160,255,0.22); }
+    .cl-tag.bugfix      { background: rgba(255,160,80,0.1);  color: #FFB366;            border: 1px solid rgba(255,160,80,0.22); }
+    .cl-tag.important   { background: rgba(200,155,60,0.14); color: var(--gold-light); border: 1px solid rgba(200,155,60,0.35); }
+    .cl-tag.qol         { background: rgba(201,163,255,0.1); color: #C9A3FF;            border: 1px solid rgba(201,163,255,0.25); }
 
     .cl-section ul {
       list-style: none;
@@ -314,9 +316,15 @@
       <h2>The BIG one. Time for the fun stuff!</h2>
 
       <div class="cl-section">
+        <span class="cl-tag important">Important</span>
+        <ul>
+          <li>Old recordings remain fully playable, but new features only apply to recordings made on 2.0 or later.</li>
+        </ul>
+      </div>
+
+      <div class="cl-section">
         <span class="cl-tag new">New</span>
         <ul>
-          <li>IMPORTANT — Old recordings remain fully playable, but new features only apply to recordings made on 2.0 or later.</li>
           <li>Tags and Notes
             <ul>
               <li>Create as many tags as you'd like, color code them, see them at a glance, sort by them, etc.</li>
@@ -368,12 +376,14 @@
               <li>Timeline events spread out a bit when clumped together.</li>
             </ul>
           </li>
-          <li>Quality of life
-            <ul>
-              <li>Fleshed out storage retention settings — auto-delete by age, space consumed, or both, with an Apply button to instantly trim your library.</li>
-              <li>Black screen on tab-out replaced by a gray screen with an icon and some text, so YouTube no longer auto-trims empty black frames and desyncs audio on uploads.</li>
-            </ul>
-          </li>
+        </ul>
+      </div>
+
+      <div class="cl-section">
+        <span class="cl-tag qol">Quality of Life</span>
+        <ul>
+          <li>Fleshed out storage retention settings — auto-delete by age, space consumed, or both, with an Apply button to instantly trim your library.</li>
+          <li>Black screen on tab-out replaced by a gray screen with an icon and some text, so YouTube no longer auto-trims empty black frames and desyncs audio on uploads.</li>
         </ul>
       </div>
 
@@ -396,7 +406,7 @@
       </div>
 
       <div class="cl-section">
-        <span class="cl-tag enhancement">Enhancements</span>
+        <span class="cl-tag qol">Quality of Life</span>
         <ul>
           <li>Option to disable in-game audio recording.</li>
           <li>24 FPS recording option to save even more space.</li>
