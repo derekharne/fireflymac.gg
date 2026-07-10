@@ -306,6 +306,71 @@
 
 <!-- ── Entries ── -->
 <div class="changelog">
+      <!-- ── v2.2.0 ── -->
+  <div class="cl-entry">
+    <div class="cl-meta">
+      <span class="cl-version">v2.2.0</span>
+      <span class="cl-date">July 10, 2026</span>
+    </div>
+    <div class="cl-body">
+      <h2>Matchup Browser and Chroma Fix</h2>
+
+      <div class="cl-section">
+        <span class="cl-tag new">New</span>
+        <ul>
+          <li>Matchups Tab
+              <ul>
+                  <li>Dedicated matchup browser that lets you browse and analyze per lane matchups.</li>
+                  <li>Tracks win rate, CS/m, items and more about each matchup!</li>
+                  <li>Automatically rates matchup difficulty based on rolling stats to help identify what you personally struggle with.</li>
+                  <li>Quickly review kills and deaths in this matchup, break them down by in game time or review them all at once. </li>
+                  <li>Quick links to popular online resources to review what other players in this matchup are doing.</li>
+              </ul>
+          </li>
+        </ul>
+      </div>
+
+      <div class="cl-section">
+        <span class="cl-tag enhancement">Enhancements</span>
+        <ul>
+          <li>Notes
+              <ul>
+                  <li>Notes are now broken down into Matchup Notes and Game Notes.</li>
+                  <li>Added support for different fonts, sizes, and ordered lists.</li>
+                  <li>Added a button to pop out the notes for either, or both, to their own floating window to allow editing notes while also playing back a recording.</li>
+              </ul>
+          </li>
+          <li>Dashboard
+              <ul>
+                  <li>New Tough Matchups and reworked Struggling Against panel.</li>
+                  <li>Tough Matchups show matchups with negative win rates within the time range selected.</li>
+                  <li>Struggling VS is now more generic and shows champions you're losing against in general.</li>
+                  <li>Added an option to exclude support games from CS/m calculations for players who only play support occasionally or when filled.</li>
+              </ul>
+          </li>
+        </ul>
+      </div>
+
+      <div class="cl-section">
+        <span class="cl-tag bugfix">Bugfix</span>
+        <ul>
+          <li>Fixed bug that caused Chroma's to render a champions base splash on the dashboard and in posters.
+              <ul>
+                  <li>Please submit bug reports if you find any Chroma's that still do not work. </li>
+              </ul>
+          </li>
+        </ul>
+      </div>
+
+      <div class="cl-section">
+        <span class="cl-tag qol">Quality of Life</span>
+        <ul>
+          <li>Matchups that an outcome is not detected, usually caused by closing the game client before Firefly captures the result from the API, will now show a question mark in your recordings. Click the question mark to mark a game as a win or loss for more accurate matchup data.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
       <!-- ── v2.1.0 ── -->
   <div class="cl-entry">
     <div class="cl-meta">
