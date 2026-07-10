@@ -131,14 +131,16 @@
     .carousel-slide.active { display: block; }
 
     .screenshot-frame {
-      background: #1a1a2e;
-      border: 1px solid var(--dark-border);
-      border-radius: 14px; overflow: hidden;
-      box-shadow: 0 40px 100px rgba(0,0,0,0.65), 0 0 0 1px rgba(255,255,255,0.04) inset;
+      /* Locked to the standard screenshot format (2148x1335) so every slide is the
+         same size and fills completely. No border/background/shadow/radius — the
+         screenshots carry whatever styling they need themselves. */
+      aspect-ratio: 2148 / 1335;
+      overflow: hidden;
     }
 
     .screenshot-frame img {
-      display: block; width: 100%; height: auto;
+      display: block; width: 100%; height: 100%;
+      object-fit: cover;
       border-radius: 0;
       cursor: zoom-in;
       transition: opacity 0.2s;
@@ -302,10 +304,42 @@
       cursor: zoom-out;
     }
     .lightbox.active { display: flex; }
+    .lightbox-figure {
+      margin: 0; display: flex; flex-direction: column; align-items: center;
+      gap: 18px; max-width: 92vw; cursor: default;
+    }
     .lightbox img {
-      max-width: 90vw; max-height: 90vh;
+      max-width: 92vw; max-height: 80vh;
       border-radius: 12px;
       box-shadow: 0 8px 48px rgba(0,0,0,0.6);
+    }
+    .lightbox-caption {
+      max-width: 760px; text-align: center;
+      font-size: 0.95rem; color: var(--text-muted); line-height: 1.6;
+    }
+    .lightbox-caption .grad {
+      color: #D4F07A;
+      text-shadow: 0 0 28px rgba(201,245,80,0.3), 0 0 70px rgba(201,245,80,0.12);
+    }
+    /* Prev/next + close controls */
+    .lb-arrow, .lb-close {
+      position: fixed; z-index: 1000; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(20,20,34,0.7); color: var(--text);
+      border: 1px solid rgba(255,255,255,0.12); border-radius: 50%;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+    }
+    .lb-arrow { top: 50%; transform: translateY(-50%); width: 52px; height: 52px; font-size: 1.5rem; }
+    .lb-arrow.prev { left: 24px; }
+    .lb-arrow.next { right: 24px; }
+    .lb-close { top: 22px; right: 24px; width: 42px; height: 42px; font-size: 1.1rem; }
+    .lb-arrow:hover, .lb-close:hover {
+      background: var(--firefly-dim); border-color: rgba(201,255,58,0.3); color: var(--firefly);
+    }
+    .lightbox.single .lb-arrow, .lightbox.single .lightbox-caption { display: none; }
+    @media (max-width: 640px) {
+      .lb-arrow { width: 42px; height: 42px; font-size: 1.2rem; }
+      .lb-arrow.prev { left: 8px; } .lb-arrow.next { right: 8px; }
     }
 
     /* ── Footer ── */
@@ -442,7 +476,7 @@
 
       <div class="carousel-slide active" role="tabpanel" aria-label="Slide 1">
         <div class="screenshot-frame">
-          <img src="screenshots/FrontPromo.jpg" alt="Firefly Dashboard — Auto Recorder for League of Legends" width="1920" height="1080" />
+          <img src="screenshots/FrontPromo.png" alt="Firefly Dashboard — Auto Recorder for League of Legends" width="2148" height="1335" />
         </div>
         <div class="carousel-caption">
           <p><span class="grad">Firefly</span> - Auto Recorder for League of Legends</p>
@@ -451,7 +485,7 @@
 
       <div class="carousel-slide" role="tabpanel" aria-label="Slide 2">
         <div class="screenshot-frame">
-          <img src="screenshots/Dashboard.jpg" alt="Firefly game timeline maps every kill, death, and objective" width="1920" height="1080" loading="lazy" />
+          <img src="screenshots/Dashboard.png" alt="Firefly game timeline maps every kill, death, and objective" width="2148" height="1335" loading="lazy" />
         </div>
         <div class="carousel-caption">
           <p><span class="grad">Never miss a moment</span> - Firefly automatically records every game the moment it starts - nothing to remember.</p>
@@ -460,7 +494,7 @@
 
       <div class="carousel-slide" role="tabpanel" aria-label="Slide 3">
         <div class="screenshot-frame">
-          <img src="screenshots/Recordings.jpg" alt="Firefly clip review — share your best moments or get feedback on the worst" width="1920" height="1080" loading="lazy" />
+          <img src="screenshots/Recordings.png" alt="Firefly clip review — share your best moments or get feedback on the worst" width="2148" height="1335" loading="lazy" />
         </div>
         <div class="carousel-caption">
           <p><span class="grad">Your whole game at a glance</span> - A visual timeline maps every kill, death, and objective so you can jump straight to any moment.</p>
@@ -469,25 +503,34 @@
 
       <div class="carousel-slide" role="tabpanel" aria-label="Slide 4">
         <div class="screenshot-frame">
-          <img src="screenshots/Clips.jpg" alt="Firefly — one-time purchase, yours forever" width="1920" height="1080" loading="lazy" />
+          <img src="screenshots/MatchupBrowser.png" alt="Firefly matchup browser — study every lane matchup with notes, stats, and reels" width="2148" height="1335" loading="lazy" />
+        </div>
+        <div class="carousel-caption">
+          <p><span class="grad">Study every matchup</span> - Firefly groups your games by lane opponent so you can track your record, keep notes, and rewatch the kills and deaths that decided the lane.</p>
+        </div>
+      </div>
+
+      <div class="carousel-slide" role="tabpanel" aria-label="Slide 5">
+        <div class="screenshot-frame">
+          <img src="screenshots/Clips.png" alt="Firefly — one-time purchase, yours forever" width="2148" height="1335" loading="lazy" />
         </div>
         <div class="carousel-caption">
           <p><span class="grad">Share your best. Ask abouth the worst</span> - Clip the moments worth showing off and the ones worth getting feedback on.</p>
         </div>
       </div>
 
-      <div class="carousel-slide" role="tabpanel" aria-label="Slide 5">
+      <div class="carousel-slide" role="tabpanel" aria-label="Slide 6">
         <div class="screenshot-frame">
-          <img src="screenshots/Montage.jpg" alt="Firefly — one-time purchase, yours forever" width="1920" height="1080" loading="lazy" />
+          <img src="screenshots/Montage.png" alt="Firefly — one-time purchase, yours forever" width="2148" height="1335" loading="lazy" />
         </div>
         <div class="carousel-caption">
           <p><span class="grad">Easily and quickly create montages for especially great games</span> - Stitch together clips of whatever events you want to create the perfect montage.</p>
         </div>
       </div>
 
-      <div class="carousel-slide" role="tabpanel" aria-label="Slide 5">
+      <div class="carousel-slide" role="tabpanel" aria-label="Slide 7">
         <div class="screenshot-frame">
-          <img src="screenshots/ClipsManager.jpg" alt="Firefly — one-time purchase, yours forever" width="1920" height="1080" loading="lazy" />
+          <img src="screenshots/ClipsManager.png" alt="Firefly — one-time purchase, yours forever" width="2148" height="1335" loading="lazy" />
         </div>
         <div class="carousel-caption">
           <p><span class="grad">Clips manager to keep track of your clips and montages</span> - Clips and Montages are stored and as easy to manage as the recordings.</p>
@@ -505,6 +548,7 @@
         <button class="carousel-dot" data-index="3" role="tab" aria-label="Go to slide 4" aria-selected="false"></button>
         <button class="carousel-dot" data-index="4" role="tab" aria-label="Go to slide 5" aria-selected="false"></button>
         <button class="carousel-dot" data-index="5" role="tab" aria-label="Go to slide 6" aria-selected="false"></button>
+        <button class="carousel-dot" data-index="6" role="tab" aria-label="Go to slide 7" aria-selected="false"></button>
       </div>
       <button class="carousel-arrow" id="next" aria-label="Next slide">&#8594;</button>
     </div>
@@ -555,7 +599,13 @@
 
 <!-- ── Lightbox ── -->
 <div class="lightbox" id="lightbox">
-  <img id="lightbox-img" src="" alt="" />
+  <button class="lb-arrow prev" id="lb-prev" aria-label="Previous screenshot">&#8592;</button>
+  <figure class="lightbox-figure" id="lightbox-figure">
+    <img id="lightbox-img" src="" alt="" />
+    <figcaption class="lightbox-caption" id="lightbox-caption"></figcaption>
+  </figure>
+  <button class="lb-arrow next" id="lb-next" aria-label="Next screenshot">&#8594;</button>
+  <button class="lb-close" id="lb-close" aria-label="Close">&#10005;</button>
 </div>
 
 <!-- ── Footer ── -->
@@ -596,18 +646,68 @@
   (function() {
     var lb = document.getElementById('lightbox');
     var lbImg = document.getElementById('lightbox-img');
-    document.querySelectorAll('.step-img, .screenshot-frame img').forEach(function(img) {
+    var lbCaption = document.getElementById('lightbox-caption');
+    var figure = document.getElementById('lightbox-figure');
+    var prevBtn = document.getElementById('lb-prev');
+    var nextBtn = document.getElementById('lb-next');
+    var closeBtn = document.getElementById('lb-close');
+
+    // Build the gallery from the carousel slides (image + its caption), so the
+    // blown-up view can be paged through with the caption shown underneath.
+    var gallery = Array.from(document.querySelectorAll('.carousel-slide')).map(function(slide) {
+      var img = slide.querySelector('.screenshot-frame img');
+      var cap = slide.querySelector('.carousel-caption');
+      return { src: img.src, alt: img.alt, caption: cap ? cap.innerHTML : '' };
+    });
+
+    var galleryMode = false;
+    var index = 0;
+
+    function show(i) {
+      index = (i + gallery.length) % gallery.length;
+      var item = gallery[index];
+      lbImg.src = item.src;
+      lbImg.alt = item.alt;
+      lbCaption.innerHTML = item.caption;
+    }
+
+    function open() { lb.classList.add('active'); }
+    function close() { lb.classList.remove('active'); }
+
+    // Carousel screenshots open the paged gallery (with caption + arrows).
+    document.querySelectorAll('.screenshot-frame img').forEach(function(img, i) {
       img.addEventListener('click', function() {
-        lbImg.src = img.src;
-        lbImg.alt = img.alt;
-        lb.classList.add('active');
+        galleryMode = true;
+        lb.classList.remove('single');
+        show(i);
+        open();
       });
     });
-    lb.addEventListener('click', function() {
-      lb.classList.remove('active');
+
+    // Getting-started step images open as a single image (no arrows/caption).
+    document.querySelectorAll('.step-img').forEach(function(img) {
+      img.addEventListener('click', function() {
+        galleryMode = false;
+        lb.classList.add('single');
+        lbImg.src = img.src;
+        lbImg.alt = img.alt;
+        lbCaption.innerHTML = '';
+        open();
+      });
     });
+
+    prevBtn.addEventListener('click', function(e) { e.stopPropagation(); show(index - 1); });
+    nextBtn.addEventListener('click', function(e) { e.stopPropagation(); show(index + 1); });
+    closeBtn.addEventListener('click', function(e) { e.stopPropagation(); close(); });
+    // Clicks on the image/caption shouldn't close; only the backdrop does.
+    figure.addEventListener('click', function(e) { e.stopPropagation(); });
+    lb.addEventListener('click', close);
+
     document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') lb.classList.remove('active');
+      if (!lb.classList.contains('active')) return;
+      if (e.key === 'Escape') close();
+      else if (galleryMode && e.key === 'ArrowLeft') show(index - 1);
+      else if (galleryMode && e.key === 'ArrowRight') show(index + 1);
     });
   })();
 </script>
