@@ -3,57 +3,42 @@
     <channel>
         <title>Firefly</title>
         <item>
-            <title>2.2.0</title>
-            <pubDate>Fri, 10 Jul 2026 14:26:10 -0500</pubDate>
-            <sparkle:version>20260710</sparkle:version>
-            <sparkle:shortVersionString>2.2.0</sparkle:shortVersionString>
+            <title>2.2.1</title>
+            <pubDate>Mon, 13 Jul 2026 12:45:47 -0500</pubDate>
+            <sparkle:version>20260713</sparkle:version>
+            <sparkle:shortVersionString>2.2.1</sparkle:shortVersionString>
             <description><![CDATA[
-                <h2>What's New in v2.2.0</h2>
-                <h3>New</h3>
-                <ul>
-                    <li>Matchups Tab
-                        <ul>
-                            <li>Dedicated matchup browser that lets you browse and analyze per lane matchups.</li>
-                            <li>Tracks win rate, CS/m, items and more about each matchup!</li>
-                            <li>Automatically rates matchup difficulty based on rolling stats to help identify what you personally struggle with.</li>
-                            <li>Quickly review kills and deaths in this matchup, break them down by in game time or review them all at once. </li>
-                            <li>Quick links to popular online resources to review what other players in this matchup are doing.</li>
-                        </ul>
-                    </li>
-                </ul>
+                <h2>What's New in v2.2.1</h2>
                 <h3>Enhancements</h3>
                 <ul>
-                    <li>Notes
+                    <li>Posters
                         <ul>
-                            <li>Notes are now broken down into Matchup Notes and Game Notes.</li>
-                            <li>Added support for different fonts, sizes, and ordered lists.</li>
-                            <li>Added a button to pop out the notes for either, or both, to their own floating window to allow editing notes while also playing back a recording.</li>
-                        </ul>
-                    </li>
-                    <li>Dashboard
-                        <ul>
-                            <li>New Tough Matchups and reworked Struggling Against panel.</li>
-                            <li>Tough Matchups show matchups with negative win rates within the time range selected.</li>
-                            <li>Struggling VS is now more generic and shows champions you're losing against in general.</li>
-                            <li>Added an option to exclude support games from CS/m calculations for players who only play support occasionally or when filled.</li>
+                            <li>Posters now have some additional configuration options to customize the experience for use cases such as YouTube thumbnails.</li>
+                            <li>Updated the context menu Show in Finder menu to include jumping straight to the recording OR poster to easily find either.</li>
                         </ul>
                     </li>
                 </ul>
                 <h3>Bugfixes</h3>
                 <ul>
-                    <li>Fixed bug that caused Chroma's to render a champions base splash on the dashboard and in posters.
-                        <ul>
-                            <li>Please submit bug reports if you find any Chroma's that still do not work. </li>
-                        </ul>
-                    </li>
-                    <li>Fixed a transparency bug in light and dark modes.</li>
-                </ul>
-                <h3>Quality of Life</h3>
-                <ul>
-                    <li>Matchups that an outcome is not detected, usually caused by closing the game client before Firefly captures the result from the API, will now show a question mark in your recordings. Click the question mark to mark a game as a win or loss for more accurate matchup data.</li>
+                    <li>When marking the result of a game that was previously unknown the poster wasn't updating to reflect the now known Victory or Defeat outcome, the posters now update after selecting a matchup outcome.</li>
                 </ul>
                 <p>For the full detailed changelog please visit <a href="https://fireflymac.gg/changelog.html">https://fireflymac.gg/changelog.html</a>.</p>
             ]]></description>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://fireflymac.gg/downloads/Firefly-2.2.1.dmg" length="7872301" type="application/octet-stream" sparkle:edSignature="zzgSLFdUZI6F8vFJbDXd4OFh7DtoYVZVHokPRUnDnZJ33THJIboSyf/CDSOtI8sy9BAzec65RPgoXVs934DYAw=="/>
+            <sparkle:deltas>
+                <enclosure url="https://fireflymac.gg/downloads/Firefly20260713-20260710.delta" sparkle:deltaFrom="20260710" length="939582" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="975840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="UurhwedFQ9oXz0+0oru9NnjA80/V6WesUprkiY0rZobUDZeWhu1glvhGpFTYopWxu5BtXmBxm9N9aIUaq0hTAw=="/>
+                <enclosure url="https://fireflymac.gg/downloads/Firefly20260713-20260620.delta" sparkle:deltaFrom="20260620" length="1858826" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="975840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="/beSEnBQZDTpvxJO/N4XrfzRQpEmK6uaygmd11Gv1aG2eH00jMMIq1JyL6RgTLv8DO9OP3mSr6u3IRS1wsMYAA=="/>
+                <enclosure url="https://fireflymac.gg/downloads/Firefly20260713-20260430.delta" sparkle:deltaFrom="20260430" length="2494078" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="975840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="ag8uJAskQlei7oDo2b6jEa17nuWXhb0ol0yxOk2eRALe+BOOrGBvWFtjDFYjm+UDXzj1faadZTXmp/Oe2Am9Dg=="/>
+                <enclosure url="https://fireflymac.gg/downloads/Firefly20260713-20260414.delta" sparkle:deltaFrom="20260414" length="3700190" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="975840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="u33vqwhJ+oWuDZlStbDEZ/uav4VtMWRU2hIMPZkXVD0ulRxQWgie2OaqZDj2zzLNjPQjSYUl6hEV8yt4XpLmDA=="/>
+                <enclosure url="https://fireflymac.gg/downloads/Firefly20260713-20260407.delta" sparkle:deltaFrom="20260407" length="3756606" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="975840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="9T9DfF9fybWrqyqcLVf0ziEN2P/mzMkbz/6rhm31L8ZOadr5S7KumcfhnyE16ExGNRSs44bR1zcp82P46/R8Cg=="/>
+            </sparkle:deltas>
+        </item>
+        <item>
+            <title>2.2.0</title>
+            <pubDate>Fri, 10 Jul 2026 14:26:10 -0500</pubDate>
+            <sparkle:version>20260710</sparkle:version>
+            <sparkle:shortVersionString>2.2.0</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
             <enclosure url="https://fireflymac.gg/downloads/Firefly-2.2.0.dmg" length="7823142" type="application/octet-stream" sparkle:edSignature="M1Xdenyhy8VRUzNrduCxahg4m/EZ6xW9XU3WG9JXer4O/tW2Hnb6E2SnF+sQyKc01PX1Etyy7bkcwMSXUcSZAQ=="/>
             <sparkle:deltas>
@@ -77,21 +62,6 @@
                 <enclosure url="https://fireflymac.gg/downloads/Firefly20260620-20260407.delta" sparkle:deltaFrom="20260407" length="2916206" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="975840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="Q7DtfJCYTPR/86ByhtHWN59OHCVeC/Tjnfw8CUfrOlLAdslc/wKnvPoY4Glo5q6p9qpRLDYF9H+R947FIcM4Dg=="/>
                 <enclosure url="https://fireflymac.gg/downloads/Firefly20260620-20260406.delta" sparkle:deltaFrom="20260406" length="2923138" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="975840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="khcMexq6Em5fkvyRBuAXomSjmLNteKuG+bzQRi62t+9Wirjtvm3e395JwfNmyfhHV2J77YXftRv+Fk8wgDN1DQ=="/>
                 <enclosure url="https://fireflymac.gg/downloads/Firefly20260620-20260405.delta" sparkle:deltaFrom="20260405" length="2926582" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="975840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="b5l4wsXaQSyc3rzn2te+lVZZmbujjd5L/lpVTPBmx4LagfgK75YGdwQ1qgITqwtDBz4kvx2WAElO7Solz6eQCA=="/>
-            </sparkle:deltas>
-        </item>
-        <item>
-            <title>2.0.0</title>
-            <pubDate>Thu, 30 Apr 2026 11:28:08 -0500</pubDate>
-            <sparkle:version>20260430</sparkle:version>
-            <sparkle:shortVersionString>2.0.0</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
-            <enclosure url="https://fireflymac.gg/downloads/Firefly-2.0.0.dmg" length="6483452" type="application/octet-stream" sparkle:edSignature="Y/JPYhb+x/VYgNr9STnNlF4wA1LE65wHiKwvQ/hQ4LaumhOr+UopB9f5m0Fphl4QeGWvaJ+TnQBIv7/OTV29DA=="/>
-            <sparkle:deltas>
-                <enclosure url="https://fireflymac.gg/downloads/Firefly20260430-20260414.delta" sparkle:deltaFrom="20260414" length="2467850" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="975840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="eJIcBHnVKAvRzc37PtmHgtZg1FFO9pDGIJJTcMY3Q+t95lKo6JyLsXLe2Eq6oXa4EepE7Sa36yZ89pWkP4cKCQ=="/>
-                <enclosure url="https://fireflymac.gg/downloads/Firefly20260430-20260407.delta" sparkle:deltaFrom="20260407" length="2538798" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="975840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="BpNq1oUFFLZL/AmihBVDH256BxoovWgorI293YjHptEBxnKV0q7LYuUAy4iAKO6URBmfqwM3O+CxCxE4/h+ZAw=="/>
-                <enclosure url="https://fireflymac.gg/downloads/Firefly20260430-20260406.delta" sparkle:deltaFrom="20260406" length="2548038" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="975840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="EfEAasajy7kJ5IPiDVwrU1Ck7XJWzO67hbM8ktQIwGdSnXxYHJlpObKkX+8m9gF0/MwpGy3KH5CLXbgRqkZ9Cg=="/>
-                <enclosure url="https://fireflymac.gg/downloads/Firefly20260430-20260405.delta" sparkle:deltaFrom="20260405" length="2550670" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="975840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="Mj60hJWF7y6gyGPmoMdyQjiSPHL2MqhJhCAdeGlUOSc7BWnrLkz+p964NPHsPbKVOv7MRZk+Y6ie2U82/EP5AA=="/>
-                <enclosure url="https://fireflymac.gg/downloads/Firefly20260430-20260401.delta" sparkle:deltaFrom="20260401" length="2574674" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="975840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="Z6qMpFxMAzmfzPT1QFLtvcUpoPYL+vRAnCsCZ0Sz+rT5j2D0HuaCB/BCkz/EDiWhs7S+Vlrr2WzJRAh5yHQnCg=="/>
             </sparkle:deltas>
         </item>
     </channel>
