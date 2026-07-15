@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Firefly Cloud Terms of Service — Firefly</title>
+  <link rel="icon" href="icon.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" />
+  <style>
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #C89B3C;
+      --gold-light: #F0E6A2;
+      --firefly: #C9FF3A;
+      --firefly-dim: rgba(201,255,58,0.09);
+      --dark: #070F18;
+      --dark-card: #0B1825;
+      --dark-border: #132030;
+      --text: #B8C8DF;
+      --text-muted: #8BA3BF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--dark);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      bottom: -30%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 140vw;
+      height: 140vw;
+      background: radial-gradient(circle, rgba(150,220,20,0.11) 0%, rgba(100,180,15,0.07) 25%, rgba(60,130,10,0.035) 50%, rgba(30,80,10,0.01) 68%, transparent 80%);
+      pointer-events: none; z-index: 0;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 48px;
+      background: rgba(10,22,34,0.93);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--dark-border);
+    }
+
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo svg { width: 26px; height: 26px; }
+    .nav-logo span { font-size: 1.15rem; font-weight: 800; letter-spacing: 0.05em; color: #fff; }
+
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.88rem; font-weight: 500; transition: color 0.2s; padding: 8px 4px; }
+    .nav-links a:hover { color: #fff; }
+    .nav-links a.active, .nav-links a[aria-current="page"] { color: #fff; }
+
+    /* ── Page ── */
+    .page {
+      position: relative; z-index: 1;
+      max-width: 720px; margin: 0 auto;
+      padding: 80px 24px 120px;
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(200,155,60,0.1); border: 1px solid rgba(200,155,60,0.28);
+      border-radius: 100px; padding: 5px 14px;
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
+      color: var(--gold); text-transform: uppercase; margin-bottom: 26px;
+    }
+
+    .page h1 {
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-weight: 900; line-height: 1.1;
+      letter-spacing: -0.025em; color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .page h1 span {
+      color: #D4F07A;
+      text-shadow: 0 0 28px rgba(201,245,80,0.3), 0 0 70px rgba(201,245,80,0.12);
+    }
+
+    .last-updated {
+      font-size: 0.8rem; color: var(--text-muted); margin-bottom: 56px;
+    }
+
+    /* ── Summary card ── */
+    .summary-card {
+      background: var(--firefly-dim);
+      border: 1px solid rgba(201,255,58,0.2);
+      border-radius: 14px; padding: 24px 28px;
+      margin-bottom: 20px;
+      width: 100%; text-align: left;
+    }
+
+    .summary-card p {
+      font-size: 0.95rem; color: var(--text); line-height: 1.72; font-weight: 500;
+    }
+
+    /* ── Policy sections ── */
+    .policy-section {
+      background: var(--dark-card);
+      border: 1px solid var(--dark-border);
+      border-radius: 14px;
+      padding: 28px 32px;
+      margin-bottom: 14px;
+      width: 100%; text-align: left;
+    }
+
+    .policy-section h2 {
+      font-size: 1.05rem; font-weight: 700; color: #fff;
+      margin-bottom: 14px;
+      display: flex; align-items: center; gap: 10px;
+    }
+
+    .section-icon {
+      width: 30px; height: 30px; border-radius: 8px;
+      background: var(--firefly-dim);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem; flex-shrink: 0;
+    }
+
+    .policy-section p {
+      font-size: 0.9rem; color: var(--text-muted); line-height: 1.78;
+    }
+
+    .policy-section p + p { margin-top: 12px; }
+
+    /* ── Footer ── */
+    footer {
+      position: relative; z-index: 1; text-align: center;
+      padding: 26px 24px;
+      border-top: 1px solid var(--dark-border);
+      color: var(--text-muted); font-size: 0.78rem; line-height: 1.7;
+    }
+    footer a { color: var(--text-muted); text-decoration: none; padding: 8px 4px; }
+    footer a:hover { color: #fff; }
+    .sep { margin: 0 8px; opacity: 0.35; }
+
+    /* ── Skip link ── */
+    .skip-link {
+      position: absolute; top: -100%; left: 16px;
+      background: var(--firefly); color: var(--dark); padding: 8px 16px;
+      border-radius: 8px; font-size: 0.88rem; font-weight: 600;
+      z-index: 200; text-decoration: none;
+    }
+    .skip-link:focus { top: 12px; }
+
+    /* ── Focus styles ── */
+    :focus-visible {
+      outline: 2px solid var(--firefly);
+      outline-offset: 2px;
+    }
+
+    /* ── Reduced motion ── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      html { scroll-behavior: auto; }
+    }
+
+    /* ── Mobile responsive ── */
+    @media (max-width: 768px) {
+      nav { padding: 14px 20px; }
+      .nav-links { gap: 16px; }
+      .nav-links a { font-size: 0.82rem; }
+      .page { padding: 48px 16px 80px; }
+      .policy-section { padding: 22px 20px; }
+    }
+
+    @media (max-width: 480px) {
+      nav { flex-wrap: wrap; justify-content: center; gap: 10px; }
+      .nav-links { gap: 12px; }
+    }
+
+    /* ── Stars & Moon ── */
+    .moon {
+      position: fixed;
+      top: 7%; left: 7%;
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: transparent;
+      box-shadow: -14px -5px 0 1px rgba(160,190,220,0.14);
+      transform: rotate(-30deg);
+      pointer-events: none; z-index: 0;
+    }
+    .stars {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      pointer-events: none; z-index: 0;
+    }
+    .star {
+      position: absolute;
+      background: #fff;
+      border-radius: 50%;
+    }
+  </style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+<div class="moon"></div>
+
+<!-- ── Nav ── -->
+<nav>
+  <a class="nav-logo" href="index.html">
+    <img src="icon.png" alt="Firefly" style="width:28px;height:28px;border-radius:6px;" />
+    <span>Firefly</span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="changelog.html">Changelog</a></li>
+    <li><a href="privacy.html">Privacy</a></li>
+    <li><a href="terms.html" class="active" aria-current="page">Terms</a></li>
+    <li><a href="support.html">Support</a></li>
+  </ul>
+</nav>
+
+<main id="main">
+<!-- ── Content ── -->
+<div class="page">
+  <div class="badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg> Cloud Terms</div>
+  <h1>Firefly <span>Cloud Terms of Service.</span></h1>
+  <p class="last-updated">Last updated: May 2026</p>
+
+  <div class="summary-card">
+    <p>These are the terms for <strong>Firefly Cloud</strong> — the optional service that lets you upload recordings from the Firefly Mac app and share them via a public link. They cover how the account works, what you can and can't upload, and how the paid plans operate. Firefly Cloud is a convenience service for game replays — keep a local copy of anything you can't afford to lose; the Mac app stores recordings on your computer by default. Using the Mac app on its own (without signing in to Cloud) doesn't require agreeing to these terms; only the <a href="privacy.html" style="color:var(--firefly);text-decoration:none;">Privacy Policy</a> applies in that case.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2><span class="section-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--firefly)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Acceptance</h2>
+    <p>By signing in to Firefly Cloud (or by continuing to use Cloud after you're signed in), you agree to these Terms of Service and the accompanying <a href="privacy.html" style="color:var(--firefly);text-decoration:none;">Privacy Policy</a>. If you don't agree, sign out of Cloud — the Mac app keeps working as a local-only recorder.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2><span class="section-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--firefly)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span> Eligibility</h2>
+    <p>You must be at least <strong>13 years old</strong> to create a Firefly Cloud account. By signing in, you confirm that you meet that requirement. Firefly Cloud is not directed to children under 13; if we learn we've collected information from a child under 13 without verifiable parental consent, we'll delete the account and any associated data.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2><span class="section-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--firefly)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></span> What Firefly Cloud is</h2>
+    <p>Firefly Cloud is the service that lets you upload selected recordings from the Firefly Mac app to servers we operate, and share them with anyone via a public link rendered on <code>app.fireflymac.gg</code>. Sign-in is via Apple. Free, trial, and paid tiers may be offered; the per-tier limits (slots, retention) are displayed in the Mac app's Cloud tab and on this website.</p>
+    <p>The Mac app itself is a separate piece of software that runs entirely on your computer and doesn't require Cloud — these terms don't apply to that local usage.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2><span class="section-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--firefly)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span> Your account</h2>
+    <p>Firefly Cloud accounts are tied to your Apple ID via Sign in with Apple. You're responsible for keeping your Apple ID secure; we have no separate password to manage.</p>
+    <p>You can sign out anytime from the Mac app, and you can request full account deletion by emailing <strong>support@fireflymac.gg</strong> from the address Apple shares with us. We'll delete your account and associated Cloud data within 7 days of a confirmed request. Backup snapshots, if any, may persist on a separate rotation that purges naturally over time; they are never used to restore data outside of disaster recovery.</p>
+    <p>Accounts are personal and non-transferable. You may not share your Sign in with Apple credentials, your account, or your Cloud uploads' authenticated API access with anyone else. Each natural person gets one Firefly Cloud account; sharing one account across multiple users or installations is grounds for suspension or termination.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2><span class="section-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--firefly)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg></span> Acceptable use</h2>
+    <p>Don't upload content that you don't have the right to share, that contains personal information about anyone other than yourself, that violates Riot Games' or any other party's intellectual property rights, or that's harassing, threatening, hateful, sexually explicit, or otherwise unlawful. We reserve the right to remove uploads and terminate accounts that breach this section.</p>
+    <p>Firefly has multiple checks in place to ensure that the only content uploaded are gameplay recordings produced with the Firefly macOS application. Any attempts to circumvent this are strictly against our terms of service and grounds for immediate suspension or account termination.</p>
+    <p>You are solely responsible for ensuring that your recordings and uploads comply with the terms of service and acceptable-use policies of the games being recorded (e.g. Riot Games' Terms of Service for League of Legends). Firefly Cloud is a recording-storage and sharing tool; we do not interpret game publishers' policies on your behalf or guarantee that recording or sharing any specific gameplay is permitted under them.</p>
+    <p>Don't attempt to circumvent the rate limits, share-link expiry mechanisms, slot quotas, or other technical controls on the service. Don't scrape, automate access to, or resell Firefly Cloud bandwidth or storage. Don't upload malicious code, attempt to gain unauthorized access to other accounts or to our systems, or interfere with the service's operation.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2><span class="section-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--firefly)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span> Content ownership and license</h2>
+    <p>You own the recordings you make. Uploading a recording to Firefly Cloud grants us a non-exclusive, royalty-free, time-limited license to store, serve, and display that recording for the sole purpose of providing the service to you and the people who view your share link. The license ends when you delete the upload or close your account.</p>
+    <p>We will not use your recordings to train AI models, sell ads against them, or sublicense them to any third party.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2><span class="section-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--firefly)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span> Subscriptions and payment (when applicable)</h2>
+    <p>Free and trial tiers don't require payment. Paid tiers are billed monthly through our payment processor which acts as the merchant of record (collecting payment, computing applicable taxes, and issuing receipts on our behalf). Charges are clearly shown before purchase. You can cancel anytime from your account; cancellation takes effect at the end of the current billing period, after which your tier downgrades to free (with the corresponding storage/retention limits — your existing uploads may be deleted if you exceed the free quota; we'll send a reminder before that happens).</p>
+    <p>Refunds are handled by our payment provider under their refund policy. EU and UK customers have a 14-day statutory right of withdrawal on digital subscriptions, and refund requests within that window are honored regardless of reason. Outside that window, refunds are generally not provided. For how we handle extended outages, see the next section.</p>
+    <p>If we must change the price of an existing paid plan, we will give you at least <strong>30 days' notice</strong> before the new price applies to your next renewal — via email to the address Apple shares with us and via in-app notice on the Cloud tab. You can cancel before the price change takes effect to avoid the new rate; cancellations follow the usual end-of-period rule. New plans introduced at a different price point do not trigger this notice for users who don't subscribe to them.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2><span class="section-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--firefly)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span> Service availability</h2>
+    <p>Firefly Cloud is provided on an <strong>"as-available"</strong> basis. We work hard to keep the service running, but we don't guarantee uninterrupted availability, and routine disruptions — planned maintenance, infrastructure incidents, ISP or hosting-provider issues, deploys, or short-duration outages — are not refundable.</p>
+    <p>If an <em>unplanned</em> outage prevents access to paid features for more than <strong>72 consecutive hours</strong>, we may — at our sole discretion — credit affected accounts with additional service time (for example, a free month or a pro-rated extension). This is a goodwill measure, not a guaranteed remedy, and we communicate any such credit via email or in-app notice.</p>
+    <p>Causes outside our reasonable control — including but not limited to internet outages, denial-of-service attacks, hardware failure, third-party service failures (Apple Sign-In, Payment Providers, hosting provider, CDN, DNS), force majeure events, government action, or acts of war — do not create liability on our part, and time lost to them does not count toward the 72-hour threshold.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2><span class="section-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--firefly)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span> Your recordings and backups</h2>
+    <p>Your Cloud uploads are stored with an established third-party cloud storage provider engineered for high durability and redundancy across multiple facilities. We make reasonable efforts to keep your uploads safe and available. As with any online service we can't offer an absolute guarantee, but loss of a stored upload should be a rare, exceptional event.</p>
+    <p>By default the Firefly Mac app also keeps recordings on your own computer, and you can download any Cloud upload back to your Mac at any time from the Cloud tab — so you always have the option to keep your own copy.</p>
+    <p>The "Lock" badge on a Cloud upload prevents it from being recycled by the automatic quota-replacement system when your slots fill up. It's a slot-management convenience, not a separate backup.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2><span class="section-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--firefly)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18l-2 13H5L3 6z"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></span> Termination</h2>
+    <p>You can stop using Firefly Cloud at any time by signing out or deleting your account. Local recordings produced by the Mac app stay on your device either way.</p>
+    <p>We may suspend or terminate your Cloud access (with reasonable notice where practical) if you breach these terms, if your account has been inactive for an extended period, or if we have to discontinue the service. On termination, we'll delete your Cloud data per the retention rules in the Privacy Policy — typically within 30 days of the deletion request or the termination event. Backup snapshots, if any, may persist for an additional period and then be purged on their own rotation; nothing in any such snapshot is used or restored except for disaster recovery.</p>
+    <p>If we elect to discontinue Firefly Cloud as a whole, we will give registered users <strong>at least 30 days' advance notice</strong> by email and in-app, during which the Mac app's "Download all Cloud recordings" action in the Cloud tab will continue to function so you can move your uploads back to local storage. The Mac app itself is a separate piece of software and continues to work as a local recorder regardless of Cloud's status.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2><span class="section-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--firefly)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span> Disclaimers</h2>
+    <p>Firefly Cloud is provided <strong>"as-is" and "as-available"</strong>, without warranties of any kind, whether express, implied, statutory, or otherwise. To the maximum extent permitted by law, we disclaim all warranties including (but not limited to) merchantability, fitness for a particular purpose, accuracy, non-infringement, and uninterrupted operation. We make no warranty that the service will meet your specific requirements.</p>
+    <p>Firefly is not affiliated with, endorsed by, or sponsored by Riot Games, Apple Inc., or any other party. League of Legends and all related trademarks are property of Riot Games, Inc.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2><span class="section-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--firefly)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span> Limitation of liability</h2>
+    <p>To the maximum extent permitted by law, Firefly's total liability for any claim arising out of or related to these terms or your use of Firefly Cloud is limited to the amount you paid us in the 12 months preceding the claim, or USD $50, whichever is greater. We are not liable for indirect, incidental, or consequential damages.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2><span class="section-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--firefly)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span> Indemnification</h2>
+    <p>You agree to defend, indemnify, and hold harmless Firefly and its operators from and against any claims, damages, losses, liabilities, costs, and expenses (including reasonable attorneys' fees) arising out of or related to: (a) your use of Firefly Cloud; (b) any content you upload, share, or store via the service; (c) your violation of these terms or any applicable law; (d) your violation of any third party's rights, including intellectual-property, privacy, or publicity rights; or (e) your violation of the terms of service or acceptable-use policies of any game publisher whose gameplay you record (including but not limited to Riot Games).</p>
+    <p>This obligation survives termination of your account and these terms.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2><span class="section-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--firefly)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span> Changes</h2>
+    <p>If we materially update these terms, we'll post the revised version here with an updated date. Continued use of the service after the change constitutes acceptance.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2><span class="section-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--firefly)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg></span> Governing law</h2>
+    <p>These terms are governed by the laws of the State of North Dakota, USA, without regard to conflict-of-laws principles. Subject to the arbitration and class-action provisions below, any dispute arising out of or relating to these terms or your use of Firefly Cloud is subject to the exclusive jurisdiction of the state and federal courts located in Cass County, North Dakota. If you are a consumer resident in the European Union, the United Kingdom, or another jurisdiction whose mandatory consumer-protection laws grant you the right to bring proceedings in the courts of your habitual residence, nothing in this section overrides that right.</p>
+    <p><strong>Informal resolution first.</strong> Before filing any formal claim, you agree to contact us at <strong>support@fireflymac.gg</strong> with a description of the dispute and what you'd like resolved, and to give us at least 30 days to respond and attempt a good-faith resolution.</p>
+    <p><strong>Binding arbitration.</strong> If informal resolution fails, any remaining dispute, claim, or controversy arising out of or relating to these terms or your use of Firefly Cloud — except (a) claims for injunctive or equitable relief involving intellectual-property infringement, (b) small-claims-court matters that qualify under their jurisdictional limits, and (c) any claim that mandatory consumer-protection law in your jurisdiction prohibits from being arbitrated — shall be resolved by binding individual arbitration administered under the rules of a recognized arbitration provider mutually agreed by the parties, or, failing agreement, by JAMS. Arbitration shall take place in Cass County, North Dakota, or by remote/written submission where permitted by the rules. The arbitrator's decision is final and may be entered as a judgment in any court of competent jurisdiction.</p>
+    <p><strong>Class-action waiver.</strong> You and Firefly each agree that any dispute resolution proceeding will be conducted only on an individual basis and not in a class, consolidated, or representative action. The arbitrator may not consolidate more than one person's claims and may not preside over any form of representative or class proceeding. If a court decides this class-action waiver is unenforceable as to a particular claim, that claim — and only that claim — must be heard in court, but the rest of these dispute-resolution provisions remain in force.</p>
+    <p>Payment processing is handled by our payment processor as merchant of record under their own jurisdictional terms; payment-related disputes are first resolved through their processes.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2><span class="section-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--firefly)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span> Contact</h2>
+    <p>Questions about these terms? Reach us via the <a href="support.html" style="color:var(--firefly);text-decoration:none;">Support</a> page or email <strong>support@fireflymac.gg</strong>.</p>
+  </div>
+</div>
+</main>
+
+<!-- ── Footer ── -->
+<footer>
+  <p>
+    © 2026 Firefly
+    <span class="sep">·</span>
+    <a href="privacy.html">Privacy</a>
+    <span class="sep">·</span>
+    <a href="terms.html">Terms</a>
+    <span class="sep">·</span>
+    <a href="support.html">Support</a>
+    <span class="sep">·</span>
+    Not affiliated with Riot Games or Apple Inc.
+  </p>
+</footer>
+
+
+<script>
+  // Stars
+  (function() {
+    const sky = document.createElement('div');
+    sky.className = 'stars';
+    document.body.appendChild(sky);
+    for (let i = 0; i < 100; i++) {
+      const el = document.createElement('div');
+      el.className = 'star';
+      const size = (Math.random() * 1.6 + 0.4).toFixed(1);
+      el.style.cssText =
+        'left:' + (Math.random() * 100).toFixed(1) + 'vw;' +
+        'top:' + (Math.random() * 72).toFixed(1) + 'vh;' +
+        'width:' + size + 'px;height:' + size + 'px;' +
+        'opacity:' + (Math.random() * 0.55 + 0.08).toFixed(2);
+      sky.appendChild(el);
+    }
+  })();
+</script>
+
+</body>
+</html>
