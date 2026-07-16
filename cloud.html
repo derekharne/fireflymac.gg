@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Firefly Cloud — Watch &amp; share your League clips from anywhere</title>
+  <meta name="description" content="Firefly Cloud uploads your League of Legends recordings so you can watch, scrub the event timeline, and share them from any browser — no download needed." />
+  <link rel="icon" href="icon.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" />
+  <style>
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #C89B3C;
+      --gold-light: #F0E6A2;
+      --firefly: #C9FF3A;
+      --firefly-dim: rgba(201,255,58,0.09);
+      --dark: #070F18;
+      --dark-card: #0B1825;
+      --dark-border: #132030;
+      --text: #B8C8DF;
+      --text-muted: #8BA3BF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--dark);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── Ambient glow ── */
+    body::before {
+      content: '';
+      position: fixed;
+      bottom: -30%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 140vw;
+      height: 140vw;
+      background: radial-gradient(circle, rgba(150,220,20,0.11) 0%, rgba(100,180,15,0.07) 25%, rgba(60,130,10,0.035) 50%, rgba(30,80,10,0.01) 68%, transparent 80%);
+      pointer-events: none; z-index: 0;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 48px;
+      background: rgba(10,22,34,0.93);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--dark-border);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo span { font-size: 1.15rem; font-weight: 800; letter-spacing: 0.05em; color: #fff; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.88rem; font-weight: 500; transition: color 0.2s; padding: 8px 4px; }
+    .nav-links a:hover { color: #fff; }
+    .nav-links a[aria-current="page"] { color: #fff; }
+
+    /* ── Hero ── */
+    .hero {
+      position: relative; z-index: 1;
+      display: flex; flex-direction: column; align-items: center; text-align: center;
+      padding: 100px 24px 72px;
+    }
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--firefly-dim); border: 1px solid rgba(201,255,58,0.28);
+      border-radius: 100px; padding: 5px 14px;
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
+      color: var(--firefly); text-transform: uppercase; margin-bottom: 26px;
+    }
+    .hero h1 {
+      font-size: clamp(2.8rem, 6.5vw, 4.5rem);
+      font-weight: 900; line-height: 1.08;
+      letter-spacing: -0.025em; color: #fff;
+      max-width: 820px; margin-bottom: 20px;
+    }
+    .hero h1 .grad { color: #D4F07A; text-shadow: 0 0 28px rgba(201,245,80,0.3), 0 0 70px rgba(201,245,80,0.12); }
+    .hero p { font-size: 1.1rem; color: var(--text-muted); max-width: 540px; line-height: 1.72; margin-bottom: 42px; }
+    .hero-btns { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; justify-content: center; }
+
+    /* ── Buttons ── */
+    .download-btn {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: #fff; color: #000; text-decoration: none;
+      border-radius: 14px; padding: 14px 28px;
+      box-shadow: 0 4px 28px rgba(0,0,0,0.45);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .download-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 36px rgba(0,0,0,0.55); }
+    .download-btn svg { width: 24px; height: 24px; flex-shrink: 0; }
+    .download-btn-text { display: flex; flex-direction: column; line-height: 1.25; text-align: left; }
+    .download-btn-text small { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.04em; color: #444; }
+    .download-btn-text strong { font-size: 1rem; font-weight: 700; color: #000; }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: transparent; color: var(--text); text-decoration: none;
+      border: 1px solid var(--dark-border); border-radius: 14px; padding: 14px 24px;
+      font-weight: 600; font-size: 0.95rem;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+    .btn-ghost:hover { border-color: rgba(201,255,58,0.3); color: #fff; background: var(--firefly-dim); }
+    .btn-ghost svg { width: 20px; height: 20px; flex-shrink: 0; }
+    .hero-note { font-size: 0.8rem; color: var(--text-muted); }
+
+    /* ── Alternating feature rows (editorial) ── */
+    .feat-rows {
+      position: relative; z-index: 1;
+      max-width: 1080px; margin: 0 auto 96px; padding: 0 24px;
+      display: grid; gap: 88px;
+    }
+    .feat-row {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 52px; align-items: center;
+    }
+    /* Flip rows put the media on the right; text stays left. */
+    .feat-row.flip .feat-media { order: 2; }
+
+    .feat-text .eyebrow {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em;
+      color: var(--firefly); text-transform: uppercase; margin-bottom: 12px;
+    }
+    .feat-text h2 {
+      font-size: clamp(1.5rem, 2.8vw, 2.1rem);
+      font-weight: 800; color: #fff; letter-spacing: -0.02em;
+      line-height: 1.14; margin-bottom: 14px;
+    }
+    .feat-text p { font-size: 0.98rem; color: var(--text-muted); line-height: 1.74; }
+    .feat-text p a { color: #D4F07A; text-decoration: none; border-bottom: 1px solid rgba(212,240,122,0.35); }
+    .feat-text p a:hover { border-bottom-color: #D4F07A; }
+
+    /* Screenshot is a pre-composed mockup (window + drop shadow on a black
+       background) — no wrapper frame/shadow/crop; it blends into the dark
+       section on its own. Click opens the full image in the lightbox. */
+    .feat-media .shot-link {
+      display: block; position: relative; cursor: zoom-in;
+    }
+    .feat-media .shot-link img {
+      display: block; width: 100%; height: auto;
+    }
+    /* Hover affordance: dim + a magnify hint so it reads as clickable. */
+    .feat-media .shot-link::after {
+      content: "⤢ Click to enlarge";
+      position: absolute; right: 10px; bottom: 10px;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.02em;
+      color: #fff; background: rgba(7,15,24,0.72);
+      padding: 5px 9px; border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.14);
+      opacity: 0; transition: opacity 0.18s;
+      pointer-events: none;
+    }
+    .feat-media .shot-link:hover::after { opacity: 1; }
+
+    /* Lightbox overlay for the full-size screenshot. */
+    .lightbox {
+      position: fixed; inset: 0; z-index: 100;
+      display: none; align-items: center; justify-content: center;
+      background: rgba(3,7,12,0.9); padding: 32px;
+      cursor: zoom-out; opacity: 0; transition: opacity 0.2s;
+    }
+    .lightbox.open { display: flex; opacity: 1; }
+    .lightbox img {
+      max-width: 96vw; max-height: 92vh;
+      border-radius: 12px; border: 1px solid var(--dark-border);
+      box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+    }
+    /* Placeholder slot — shown until a real screenshot is dropped in.
+       Swap the <div class="shot"> for an <img> and delete the placeholder. */
+    .feat-media .shot {
+      aspect-ratio: 16 / 10;
+      border-radius: 14px; border: 1px dashed rgba(201,255,58,0.35);
+      background:
+        repeating-linear-gradient(45deg, rgba(201,255,58,0.03) 0 12px, transparent 12px 24px),
+        var(--dark-card);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 8px; padding: 24px; text-align: center;
+    }
+    .feat-media .shot .tag {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--firefly);
+    }
+    .feat-media .shot .desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; max-width: 320px; }
+
+    /* ── Pricing ── */
+    .pricing { position: relative; z-index: 1; max-width: 1080px; margin: 0 auto 96px; padding: 0 24px; }
+    .pricing .eyebrow { text-align: center; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; color: var(--firefly); text-transform: uppercase; margin-bottom: 12px; }
+    .pricing > h2 { text-align: center; font-size: clamp(1.7rem, 3.6vw, 2.4rem); font-weight: 800; color: #fff; letter-spacing: -0.02em; margin-bottom: 14px; }
+    .pricing-sub { text-align: center; max-width: 600px; margin: 0 auto 42px; font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; align-items: stretch; }
+    .plan-card {
+      display: flex; flex-direction: column;
+      background: var(--dark-card); border: 1px solid var(--dark-border);
+      border-radius: 16px; padding: 26px 24px;
+    }
+    .plan-card.featured { border-color: rgba(201,255,58,0.4); box-shadow: 0 0 0 1px rgba(201,255,58,0.14), 0 16px 52px rgba(0,0,0,0.45); }
+    .plan-name { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px; }
+    .plan-card.featured .plan-name { color: var(--firefly); }
+    .plan-price { font-size: 2rem; font-weight: 800; color: #fff; letter-spacing: -0.02em; line-height: 1; margin-bottom: 20px; }
+    .plan-price .per { font-size: 0.95rem; font-weight: 600; color: var(--text-muted); margin-left: 1px; }
+    .plan-feats { list-style: none; display: grid; gap: 11px; margin: 0; padding-top: 18px; border-top: 1px solid var(--dark-border); }
+    .plan-feats li { font-size: 0.86rem; color: var(--text); line-height: 1.5; }
+    .plan-feats li .cap { display: block; margin-top: 3px; font-size: 0.76rem; color: var(--text-muted); line-height: 1.35; }
+    .plan-badge {
+      align-self: flex-start; margin-top: 16px;
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--firefly); background: var(--firefly-dim); border: 1px solid rgba(201,255,58,0.3);
+      border-radius: 100px; padding: 4px 11px;
+    }
+
+    /* ── System requirements ── (same card language as Pricing:
+       centered header + bare cards on the canvas, one green-featured) */
+    .reqs-section { position: relative; z-index: 1; max-width: 760px; margin: 0 auto 96px; padding: 0 24px; }
+    .reqs-section .eyebrow { text-align: center; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; color: var(--firefly); text-transform: uppercase; margin-bottom: 12px; }
+    .reqs-section > h2 { text-align: center; font-size: clamp(1.7rem, 3.6vw, 2.4rem); font-weight: 800; color: #fff; letter-spacing: -0.02em; margin-bottom: 40px; }
+
+    /* Two speed callouts — bare cards on the canvas, matching .plan-card */
+    .reqs-callouts { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .reqs-callout { background: var(--dark-card); border: 1px solid var(--dark-border); border-radius: 16px; padding: 26px 24px; }
+    .reqs-callout.featured { border-color: rgba(201,255,58,0.4); box-shadow: 0 0 0 1px rgba(201,255,58,0.14), 0 16px 52px rgba(0,0,0,0.45); }
+    /* Reserve two title lines so the speed rows line up across both cards
+       even when one title wraps ("…as Primary Storage"). */
+    .reqs-callout h3 { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 3px; line-height: 1.25; min-height: 2.5em; }
+    .reqs-callout .sub { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 18px; }
+    .reqs-speeds { display: flex; gap: 28px; margin-bottom: 16px; }
+    .reqs-speed .val { font-size: 1.7rem; font-weight: 800; color: var(--firefly); letter-spacing: -0.02em; line-height: 1; }
+    .reqs-speed .val span { font-size: 0.85rem; font-weight: 600; color: var(--text); margin-left: 3px; }
+    .reqs-speed .lbl { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-top: 7px; }
+    .reqs-callout > p { font-size: 0.84rem; color: var(--text-muted); line-height: 1.6; margin: 0; }
+    .reqs-fine { margin: 14px 0 0; padding-top: 14px; border-top: 1px solid var(--dark-border); font-size: 0.78rem; color: var(--text-muted); line-height: 1.55; }
+    .reqs-fine strong { color: var(--text); }
+    .reqs-note { max-width: 620px; margin: 26px auto 0; text-align: center; font-size: 0.84rem; color: var(--text-muted); line-height: 1.6; }
+    @media (max-width: 560px) { .reqs-callouts { grid-template-columns: 1fr; } }
+
+    /* ── CTA ── */
+    .cta {
+      position: relative; z-index: 1; text-align: center;
+      padding: 20px 24px 110px;
+      background: radial-gradient(ellipse 800px 400px at 50% 50%, rgba(201,255,58,0.035) 0%, transparent 70%);
+    }
+    .cta h2 { font-size: clamp(2rem, 4.5vw, 3rem); font-weight: 900; color: #fff; margin-bottom: 12px; letter-spacing: -0.025em; }
+    .cta p { font-size: 1rem; color: var(--text-muted); margin-bottom: 40px; }
+
+    /* ── Footer ── */
+    footer {
+      position: relative; z-index: 1; text-align: center;
+      padding: 26px 24px; border-top: 1px solid var(--dark-border);
+      color: var(--text-muted); font-size: 0.78rem; line-height: 1.7;
+    }
+    footer a { color: var(--text-muted); text-decoration: none; padding: 8px 4px; }
+    footer a:hover { color: #fff; }
+    .sep { margin: 0 8px; opacity: 0.35; }
+
+    /* ── Stars & Moon ── */
+    .moon {
+      position: fixed; top: 7%; left: 7%; width: 48px; height: 48px; border-radius: 50%;
+      background: transparent; box-shadow: -14px -5px 0 1px rgba(160,190,220,0.14);
+      transform: rotate(-30deg); pointer-events: none; z-index: 0;
+    }
+    .stars { position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: 0; }
+    .star { position: absolute; background: #fff; border-radius: 50%; }
+
+    /* ── Skip link ── */
+    .skip-link {
+      position: absolute; top: -100%; left: 16px;
+      background: var(--firefly); color: var(--dark); padding: 8px 16px;
+      border-radius: 8px; font-size: 0.88rem; font-weight: 600; z-index: 200; text-decoration: none;
+    }
+    .skip-link:focus { top: 12px; }
+    :focus-visible { outline: 2px solid var(--firefly); outline-offset: 2px; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+      html { scroll-behavior: auto; }
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 820px) {
+      .feat-row { grid-template-columns: 1fr; gap: 20px; }
+      /* Stacked: image always leads, regardless of flip. */
+      .feat-row .feat-media { order: -1 !important; }
+      .feat-rows { gap: 56px; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 14px 20px; }
+      .nav-links { gap: 16px; }
+      .nav-links a { font-size: 0.82rem; }
+      .hero { padding: 64px 20px 56px; }
+      .hero h1 { font-size: clamp(2rem, 8vw, 2.8rem); }
+      .feat-rows, .pricing, .reqs-section { padding: 0 16px; }
+      .cta { padding: 16px 20px 64px; }
+    }
+    @media (max-width: 480px) {
+      nav { flex-wrap: wrap; justify-content: center; gap: 10px; }
+      .nav-links { gap: 12px; }
+    }
+
+    @keyframes ff-pulse { 0%, 100% { opacity: 0.9; } 50% { opacity: 0.25; } }
+  </style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+<div class="moon"></div>
+
+<!-- ── Nav ── -->
+<nav>
+  <a class="nav-logo" href="index.html">
+    <img src="icon.png" alt="Firefly" style="width:28px;height:28px;border-radius:6px;" />
+    <span>Firefly</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="cloud.html" class="active" aria-current="page">Firefly Cloud</a></li>
+    <li><a href="changelog.html">Changelog</a></li>
+    <li><a href="privacy.html">Privacy</a></li>
+    <li><a href="terms.html">Terms</a></li>
+    <li><a href="support.html">Support</a></li>
+  </ul>
+</nav>
+
+<main id="main">
+<!-- ── Hero ── -->
+<section class="hero">
+  <div class="badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg> Firefly Cloud</div>
+  <h1>Your games, <span class="grad">shared</span>.</h1>
+  <p>Firefly Cloud makes it effortless to share full games with coaches, duos, and communities, show off your best clips and montages, and with select plans keep <strong>every</strong> recording online instead of eating your Mac's storage.</p>
+</section>
+
+<!-- ── Editorial rows ──
+     Each row's <div class="feat-media"> holds a placeholder slot. To fill it,
+     replace the <div class="shot">…</div> with:
+        <img src="screenshots/<file>.png" alt="…" />
+     and drop the capture into screenshots/. Alternate rows use .flip to move
+     the image to the right; on mobile the image always leads. -->
+<section class="feat-rows">
+
+  <!-- Row 1 — image left / text right -->
+  <div class="feat-row">
+    <div class="feat-media">
+      <a class="shot-link" href="screenshots/shareFullGames.png">
+        <img src="screenshots/shareFullGames.png" alt="A full game open in Firefly's browser web player — video with the event timeline underneath." />
+      </a>
+    </div>
+    <div class="feat-text">
+      <div class="eyebrow">Share full games</div>
+      <h2>Send a whole game with a single link</h2>
+      <p>Share a full match with your 5s team, your duo, a coach, or your community — they watch it right in the browser, timeline and all, with nothing to install and no account to make. Made for quick and easy game reviews from your POV. <a href="https://app.fireflymac.gg/" target="_blank" rel="noopener">See a live sample&nbsp;→</a></p>
+    </div>
+  </div>
+
+  <!-- Row 2 — text left / image right -->
+  <div class="feat-row flip">
+    <div class="feat-media">
+      <a class="shot-link" href="screenshots/cloudClip.png">
+        <img src="screenshots/cloudClip.png" alt="A clip playing in Firefly's browser web player." />
+      </a>
+    </div>
+    <div class="feat-text">
+      <div class="eyebrow">Show off the highlights</div>
+      <h2>Your best clips and montages, one link away</h2>
+      <p>Turn your great plays into clips or montages in the app and instantly get a share link. Outplays, pentakills, moments you need feedback on — share them all in a click.</p>
+    </div>
+  </div>
+
+  <!-- Row 3 — image left / text right -->
+  <div class="feat-row">
+    <div class="feat-media">
+      <a class="shot-link" href="screenshots/cloudTab.png">
+        <img src="screenshots/cloudTab.png" alt="Firefly's Cloud tab — your uploaded games with share, download, lock, and delete controls." />
+      </a>
+    </div>
+    <div class="feat-text">
+      <div class="eyebrow">Stay in control</div>
+      <h2>Manage your uploads without leaving the app</h2>
+      <p>Everything you've sent to the cloud lives in the <strong>Cloud tab</strong>. Quickly grab share links or download games back to your Mac. Everything is managed straight from the app, you'll never have to login to our website to manage your account or uploads.</p>
+    </div>
+  </div>
+
+  <!-- Row 4 — text left / image right -->
+  <div class="feat-row flip">
+    <div class="feat-media">
+      <a class="shot-link" href="screenshots/cloudPrimary.png">
+        <img src="screenshots/cloudPrimary.png" alt="Firefly's Cloud tab — the uploaded game library with games living online instead of on the Mac." />
+      </a>
+    </div>
+    <div class="feat-text">
+      <div class="eyebrow">Firefly Cloud as your primary storage</div>
+      <h2>Spare your Mac's SSD and use us as your main storage</h2>
+      <p>League games eat disk fast. A <strong>Primary Storage</strong> plan hands that weight to us. Firefly stores your recordings in the cloud automatically but treats them exactly like local files, so you browse, review, and clip right in the app like nothing changed. Upload or download a game at any time or easily keep a copy in both places. Firefly Cloud as primary storage is an optional feature available on select plans.</p>
+    </div>
+  </div>
+
+</section>
+
+<!-- ── System requirements ── -->
+<section class="reqs-section">
+  <div class="eyebrow">Requirements</div>
+  <h2>Firefly Cloud system requirements</h2>
+
+    <div class="reqs-callouts">
+      <div class="reqs-callout">
+        <h3>Firefly Cloud</h3>
+        <div class="sub">Watch &amp; share your games</div>
+        <div class="reqs-speeds">
+          <div class="reqs-speed"><div class="val">25<span>Mbps</span></div><div class="lbl">&darr; Download</div></div>
+          <div class="reqs-speed"><div class="val">10<span>Mbps</span></div><div class="lbl">&uarr; Upload</div></div>
+        </div>
+        <p>Enough to stream the web player smoothly and upload your games in the background.</p>
+      </div>
+      <div class="reqs-callout featured">
+        <h3>Firefly Cloud as Primary Storage</h3>
+        <div class="sub">Cloud-first — keep local copies too</div>
+        <div class="reqs-speeds">
+          <div class="reqs-speed"><div class="val">50<span>Mbps</span></div><div class="lbl">&darr; Download</div></div>
+          <div class="reqs-speed"><div class="val">50<span>Mbps</span></div><div class="lbl">&uarr; Upload</div></div>
+        </div>
+        <p>Faster speeds keep every game uploading quickly and lets you pull games back down fast.</p>
+        <p class="reqs-fine">Needs at least <strong>5&nbsp;GB free disk</strong> — Firefly holds each game locally just long enough to upload it in the background.</p>
+      </div>
+    </div>
+
+    <p class="reqs-note">These are the connection speeds we recommend. Firefly Cloud can run below them, but you'll likely notice slower uploads and buffering or reduced quality during playback — the further under, the rougher the experience.</p>
+</section>
+
+<!-- ── Pricing ──
+     HARDCODED — keep in sync with the live plan catalog (admin / Paddle is the
+     source of truth for actual billing). Adding/removing a card is a copy-paste
+     of one .plan-card; mark the promoted tier with class="plan-card featured". -->
+<section class="pricing" id="pricing">
+  <div class="eyebrow">Pricing</div>
+  <h2>Plans for everyone and even free option.</h2>
+  <p class="pricing-sub">Every step up adds more upload slots — and Primary Storage comes included on select plans.</p>
+  <div class="pricing-grid">
+
+    <div class="plan-card">
+      <div class="plan-name">Free</div>
+      <div class="plan-price">Free</div>
+      <ul class="plan-feats">
+        <li>2 uploads</li>
+        <li>7-day expiration</li>
+        <li>Full games only</li>
+        <li>Cloud not available as Primary Storage</li>
+      </ul>
+    </div>
+
+    <div class="plan-card">
+      <div class="plan-name">Starter</div>
+      <div class="plan-price">$3<span class="per">/mo</span></div>
+      <ul class="plan-feats">
+        <li>10 uploads</li>
+        <li>No expiration</li>
+        <li>Full games, clips &amp; montages</li>
+        <li>Cloud not available as Primary Storage</li>
+      </ul>
+    </div>
+
+    <div class="plan-card featured">
+      <div class="plan-name">Early Supporter</div>
+      <div class="plan-price">$5<span class="per">/mo</span></div>
+      <ul class="plan-feats">
+        <li>50 uploads</li>
+        <li>No expiration</li>
+        <li>Full games, clips &amp; montages</li>
+        <li>Use Cloud as your Primary Storage<span class="cap">Optional — turn it on in the app anytime</span></li>
+        <li>Uploads &amp; features grow as Firefly grows</li>
+        <li>Keep this plan for as long as you stay subscribed</li>
+      </ul>
+      <span class="plan-badge">Available for a limited time</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta">
+  <h2>Ready to get your games in the cloud?</h2>
+  <p>Download Firefly, sign in with Apple, and turn on Cloud.</p>
+  <div class="hero-btns">
+    <a class="download-btn" href="index.html">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 16l-5-5h3V4h4v7h3l-5 5z" fill="#000"/>
+        <path d="M20 18H4v2h16v-2z" fill="#000"/>
+      </svg>
+      <div class="download-btn-text">
+        <small>Download</small>
+        <strong>Firefly for macOS</strong>
+      </div>
+    </a>
+  </div>
+</section>
+</main>
+
+<!-- ── Footer ── -->
+<footer>
+  <p>
+    © 2026 Firefly
+    <span class="sep">·</span>
+    <a href="privacy.html">Privacy</a>
+    <span class="sep">·</span>
+    <a href="terms.html">Terms</a>
+    <span class="sep">·</span>
+    <a href="support.html">Support</a>
+    <span class="sep">·</span>
+    Not affiliated with Riot Games or Apple Inc.
+  </p>
+</footer>
+
+<script>
+  // Stars
+  (function() {
+    const sky = document.createElement('div');
+    sky.className = 'stars';
+    document.body.appendChild(sky);
+    for (let i = 0; i < 100; i++) {
+      const el = document.createElement('div');
+      el.className = 'star';
+      const size = (Math.random() * 1.6 + 0.4).toFixed(1);
+      el.style.cssText =
+        'left:' + (Math.random() * 100).toFixed(1) + 'vw;' +
+        'top:' + (Math.random() * 72).toFixed(1) + 'vh;' +
+        'width:' + size + 'px;height:' + size + 'px;' +
+        'opacity:' + (Math.random() * 0.55 + 0.08).toFixed(2);
+      sky.appendChild(el);
+    }
+  })();
+</script>
+
+<script>
+(function() {
+  var NS = 'http://www.w3.org/2000/svg';
+  var color = '#C9FF3A';
+  var trails = [
+    { css: 'position:fixed;left:7vw;top:12vh;width:200px;height:55px;pointer-events:none;z-index:0;overflow:visible;',
+      vw: 200, vh: 55,
+      d: 'M 2 42 C 32 22 62 46 94 30 C 126 14 154 38 182 24 C 192 18 197 15 200 13',
+      gx: 2, gy: 42, ex: 200, ey: 13, delay: '0s' },
+    { css: 'position:fixed;left:16vw;top:58vh;width:180px;height:50px;pointer-events:none;z-index:0;overflow:visible;',
+      vw: 180, vh: 50,
+      d: 'M 2 38 C 28 18 56 42 84 26 C 112 10 140 34 168 20 C 174 15 178 12 180 11',
+      gx: 2, gy: 38, ex: 180, ey: 11, delay: '1.4s' },
+    { css: 'position:fixed;right:9vw;top:22vh;width:190px;height:55px;pointer-events:none;z-index:0;overflow:visible;',
+      vw: 190, vh: 55,
+      d: 'M 188 44 C 160 26 132 48 102 32 C 72 16 42 40 14 26 C 6 20 2 16 0 14',
+      gx: 188, gy: 44, ex: 0, ey: 14, delay: '0.8s' },
+    { css: 'position:fixed;right:18vw;top:63vh;width:175px;height:50px;pointer-events:none;z-index:0;overflow:visible;',
+      vw: 175, vh: 50,
+      d: 'M 173 36 C 149 18 123 40 97 26 C 71 12 45 34 19 20 C 11 15 5 12 0 10',
+      gx: 173, gy: 36, ex: 0, ey: 10, delay: '2.1s' },
+  ];
+
+  trails.forEach(function(t, i) {
+    var svg = document.createElementNS(NS, 'svg');
+    svg.setAttribute('style', t.css);
+    svg.setAttribute('viewBox', '0 0 ' + t.vw + ' ' + t.vh);
+    var defs = document.createElementNS(NS, 'defs');
+    var gid = 'ffg' + i;
+    var grad = document.createElementNS(NS, 'linearGradient');
+    grad.setAttribute('id', gid);
+    grad.setAttribute('gradientUnits', 'userSpaceOnUse');
+    grad.setAttribute('x1', String(t.gx)); grad.setAttribute('y1', String(t.gy));
+    grad.setAttribute('x2', String(t.ex)); grad.setAttribute('y2', String(t.ey));
+    [['0%','0'],['55%','0.15'],['100%','0.5']].forEach(function(s) {
+      var stop = document.createElementNS(NS, 'stop');
+      stop.setAttribute('offset', s[0]);
+      stop.setAttribute('stop-color', color);
+      stop.setAttribute('stop-opacity', s[1]);
+      grad.appendChild(stop);
+    });
+    var fid = 'fff' + i;
+    var filt = document.createElementNS(NS, 'filter');
+    filt.setAttribute('id', fid);
+    filt.setAttribute('x', '-400%'); filt.setAttribute('y', '-400%');
+    filt.setAttribute('width', '900%'); filt.setAttribute('height', '900%');
+    var blur = document.createElementNS(NS, 'feGaussianBlur');
+    blur.setAttribute('in', 'SourceGraphic'); blur.setAttribute('stdDeviation', '2.2'); blur.setAttribute('result', 'b');
+    var merge = document.createElementNS(NS, 'feMerge');
+    ['b', 'SourceGraphic'].forEach(function(v) {
+      var mn = document.createElementNS(NS, 'feMergeNode'); mn.setAttribute('in', v); merge.appendChild(mn);
+    });
+    filt.appendChild(blur); filt.appendChild(merge);
+    defs.appendChild(grad); defs.appendChild(filt);
+    svg.appendChild(defs);
+    var path = document.createElementNS(NS, 'path');
+    path.setAttribute('d', t.d);
+    path.setAttribute('stroke', 'url(#' + gid + ')');
+    path.setAttribute('stroke-width', '1.4'); path.setAttribute('stroke-linecap', 'round'); path.setAttribute('fill', 'none');
+    svg.appendChild(path);
+    var g = document.createElementNS(NS, 'g');
+    g.setAttribute('filter', 'url(#' + fid + ')');
+    g.setAttribute('style', 'animation:ff-pulse 2.8s ease-in-out ' + t.delay + ' infinite');
+    var dot = document.createElementNS(NS, 'circle');
+    dot.setAttribute('cx', String(t.ex)); dot.setAttribute('cy', String(t.ey)); dot.setAttribute('r', '2'); dot.setAttribute('fill', '#DEFF88');
+    g.appendChild(dot); svg.appendChild(g);
+    document.body.appendChild(svg);
+  });
+})();
+</script>
+
+<!-- Screenshot lightbox: any <a class="shot-link"> opens its href full-size. -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Screenshot preview">
+  <img id="lightbox-img" src="" alt="" />
+</div>
+<script>
+(function() {
+  var box = document.getElementById('lightbox');
+  var img = document.getElementById('lightbox-img');
+  if (!box || !img) return;
+  function open(href, alt) {
+    img.src = href; img.alt = alt || '';
+    box.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function close() {
+    box.classList.remove('open');
+    document.body.style.overflow = '';
+    img.src = '';
+  }
+  document.querySelectorAll('a.shot-link').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      e.preventDefault();
+      var pic = a.querySelector('img');
+      open(a.getAttribute('href'), pic ? pic.alt : '');
+    });
+  });
+  box.addEventListener('click', close);
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && box.classList.contains('open')) close();
+  });
+})();
+</script>
+
+</body>
+</html>
