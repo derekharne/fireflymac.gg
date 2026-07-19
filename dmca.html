@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Copyright & DMCA Policy — Firefly</title>
+  <meta name="description" content="How to report copyright infringement on Firefly Cloud, our designated DMCA agent, counter-notifications, and repeat-infringer policy." />
+  <link rel="icon" href="icon.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" />
+  <style>
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #C89B3C;
+      --gold-light: #F0E6A2;
+      --firefly: #C9FF3A;
+      --firefly-dim: rgba(201,255,58,0.09);
+      --dark: #070F18;
+      --dark-card: #0B1825;
+      --dark-border: #132030;
+      --text: #B8C8DF;
+      --text-muted: #8BA3BF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--dark);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      bottom: -30%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 140vw;
+      height: 140vw;
+      background: radial-gradient(circle, rgba(150,220,20,0.11) 0%, rgba(100,180,15,0.07) 25%, rgba(60,130,10,0.035) 50%, rgba(30,80,10,0.01) 68%, transparent 80%);
+      pointer-events: none; z-index: 0;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 48px;
+      background: rgba(10,22,34,0.93);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--dark-border);
+    }
+
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo svg { width: 26px; height: 26px; }
+    .nav-logo span { font-size: 1.15rem; font-weight: 800; letter-spacing: 0.05em; color: #fff; }
+
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.88rem; font-weight: 500; transition: color 0.2s; padding: 8px 4px; }
+    .nav-links a:hover { color: #fff; }
+    .nav-links a.active, .nav-links a[aria-current="page"] { color: #fff; }
+
+    /* ── Page ── */
+    .page {
+      position: relative; z-index: 1;
+      max-width: 720px; margin: 0 auto;
+      padding: 80px 24px 120px;
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(200,155,60,0.1); border: 1px solid rgba(200,155,60,0.28);
+      border-radius: 100px; padding: 5px 14px;
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
+      color: var(--gold); text-transform: uppercase; margin-bottom: 26px;
+    }
+
+    .page h1 {
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-weight: 900; line-height: 1.1;
+      letter-spacing: -0.025em; color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .page h1 span {
+      color: #D4F07A;
+      text-shadow: 0 0 28px rgba(201,245,80,0.3), 0 0 70px rgba(201,245,80,0.12);
+    }
+
+    .last-updated {
+      font-size: 0.8rem; color: var(--text-muted); margin-bottom: 56px;
+    }
+
+    /* ── Summary card ── */
+    .summary-card {
+      background: var(--firefly-dim);
+      border: 1px solid rgba(201,255,58,0.2);
+      border-radius: 14px; padding: 24px 28px;
+      margin-bottom: 20px;
+      width: 100%; text-align: left;
+    }
+
+    .summary-card p {
+      font-size: 0.95rem; color: var(--text); line-height: 1.72; font-weight: 500;
+    }
+
+    /* ── Policy sections ── */
+    .policy-section {
+      background: var(--dark-card);
+      border: 1px solid var(--dark-border);
+      border-radius: 14px;
+      padding: 28px 32px;
+      margin-bottom: 14px;
+      width: 100%; text-align: left;
+    }
+
+    .policy-section h2 {
+      font-size: 1.05rem; font-weight: 700; color: #fff;
+      margin-bottom: 14px;
+      display: flex; align-items: center; gap: 10px;
+    }
+
+    .section-icon {
+      width: 30px; height: 30px; border-radius: 8px;
+      background: var(--firefly-dim);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem; flex-shrink: 0;
+    }
+
+    .policy-section p {
+      font-size: 0.9rem; color: var(--text-muted); line-height: 1.78;
+    }
+
+    .policy-section p + p { margin-top: 12px; }
+
+    .policy-section ul {
+      margin: 12px 0 0 0; padding-left: 20px;
+      font-size: 0.9rem; color: var(--text-muted); line-height: 1.78;
+    }
+    .policy-section li { margin-bottom: 8px; }
+
+    .agent-card {
+      background: var(--dark);
+      border: 1px solid var(--dark-border);
+      border-radius: 10px;
+      padding: 16px 20px; margin-top: 14px;
+      font-size: 0.9rem; color: var(--text); line-height: 1.8;
+    }
+
+    /* ── Footer ── */
+    footer {
+      position: relative; z-index: 1; text-align: center;
+      padding: 26px 24px;
+      border-top: 1px solid var(--dark-border);
+      color: var(--text-muted); font-size: 0.78rem; line-height: 1.7;
+    }
+    footer a { color: var(--text-muted); text-decoration: none; padding: 8px 4px; }
+    footer a:hover { color: #fff; }
+    .sep { margin: 0 8px; opacity: 0.35; }
+
+    /* ── Skip link ── */
+    .skip-link {
+      position: absolute; top: -100%; left: 16px;
+      background: var(--firefly); color: var(--dark); padding: 8px 16px;
+      border-radius: 8px; font-size: 0.88rem; font-weight: 600;
+      z-index: 200; text-decoration: none;
+    }
+    .skip-link:focus { top: 12px; }
+
+    /* ── Focus styles ── */
+    :focus-visible {
+      outline: 2px solid var(--firefly);
+      outline-offset: 2px;
+    }
+
+    /* ── Reduced motion ── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      html { scroll-behavior: auto; }
+    }
+
+    /* ── Mobile responsive ── */
+    @media (max-width: 768px) {
+      nav { padding: 14px 20px; }
+      .nav-links { gap: 16px; }
+      .nav-links a { font-size: 0.82rem; }
+      .page { padding: 48px 16px 80px; }
+      .policy-section { padding: 22px 20px; }
+    }
+
+    @media (max-width: 480px) {
+      nav { flex-wrap: wrap; justify-content: center; gap: 10px; }
+      .nav-links { gap: 12px; }
+    }
+
+    /* ── Stars & Moon ── */
+    .moon {
+      position: fixed;
+      top: 7%; left: 7%;
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: transparent;
+      box-shadow: -14px -5px 0 1px rgba(160,190,220,0.14);
+      transform: rotate(-30deg);
+      pointer-events: none; z-index: 0;
+    }
+    .stars {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      pointer-events: none; z-index: 0;
+    }
+    .star {
+      position: absolute;
+      background: #fff;
+      border-radius: 50%;
+    }
+  </style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+<div class="moon"></div>
+
+<main id="main">
+<!-- ── Content ── -->
+<div class="page">
+  <div class="badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M14.83 14.83a4 4 0 1 1 0-5.66"/></svg> Copyright</div>
+  <h1>Copyright &amp; <span>DMCA Policy.</span></h1>
+  <p class="last-updated">Last updated: July 2026</p>
+
+  <div class="summary-card">
+    <p>Firefly respects the intellectual-property rights of others. This page explains how to report content you believe infringes your copyright, how our designated agent handles those reports, how an affected user can file a counter-notification, and our policy on repeat infringers. It applies to content stored on or served by <strong>Firefly Cloud</strong> (for example, recordings and clips shared via a public link on <code>app.fireflymac.gg</code>).</p>
+  </div>
+
+  <div class="policy-section">
+    <h2><span class="section-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--firefly)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span> Reporting copyright infringement</h2>
+    <p>If you are a copyright owner (or authorized to act on behalf of one) and believe material on Firefly Cloud infringes your copyright, please send a written notice to our Designated Copyright Agent (below). To be effective under the Digital Millennium Copyright Act (17 U.S.C. § 512(c)(3)), your notice must include all of the following:</p>
+    <ul>
+      <li>A physical or electronic signature of the copyright owner or a person authorized to act on their behalf.</li>
+      <li>Identification of the copyrighted work claimed to have been infringed (or a representative list, if multiple works).</li>
+      <li>Identification of the material that is claimed to be infringing, and information reasonably sufficient to let us locate it — ideally the full share-link URL (e.g. <code>https://app.fireflymac.gg/c/…</code> or <code>/v/…</code>).</li>
+      <li>Your contact information — name, mailing address, telephone number, and email address.</li>
+      <li>A statement that you have a good-faith belief that the disputed use is not authorized by the copyright owner, its agent, or the law.</li>
+      <li>A statement, made under penalty of perjury, that the information in your notice is accurate and that you are the copyright owner or authorized to act on the owner's behalf.</li>
+    </ul>
+    <p>On receipt of a valid notice, we will remove or disable access to the identified material and make a good-faith effort to notify the user who uploaded it.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2><span class="section-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--firefly)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span> Designated Copyright Agent</h2>
+    <p>Send DMCA notices and counter-notifications to Firefly's Designated Agent:</p>
+    <div class="agent-card">
+      Copyright Agent, Firefly<br />
+      Email: <strong>dmca@fireflymac.gg</strong>
+    </div>
+    <p style="margin-top:12px;">Email is the fastest way to reach us and is sufficient for a valid notice. Please only use this contact for copyright matters — for anything else, use <a href="support.html" style="color:var(--firefly);text-decoration:none;">Support</a>.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2><span class="section-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--firefly)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 14 4 9 9 4"/><path d="M20 20v-7a4 4 0 0 0-4-4H4"/></svg></span> Counter-notification</h2>
+    <p>If your content was removed and you believe that was a mistake or misidentification, you may send a counter-notification to the Designated Agent. Under 17 U.S.C. § 512(g), it must include:</p>
+    <ul>
+      <li>Your physical or electronic signature.</li>
+      <li>Identification of the material that was removed and the location where it appeared before removal.</li>
+      <li>A statement under penalty of perjury that you have a good-faith belief the material was removed as a result of mistake or misidentification.</li>
+      <li>Your name, mailing address, and telephone number, and a statement that you consent to the jurisdiction of the federal district court for your judicial district (or, if outside the U.S., the district in which we may be found), and that you will accept service of process from the party that filed the original notice.</li>
+    </ul>
+    <p>If we receive a valid counter-notification, we may restore the material in 10–14 business days unless the original complainant notifies us that they have filed a court action seeking to restrain the allegedly infringing activity.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2><span class="section-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--firefly)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18l-2 13H5L3 6z"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></span> Repeat infringers</h2>
+    <p>Firefly maintains a policy of terminating, in appropriate circumstances, the accounts of users who are repeat infringers. Depending on severity, a single clear infringement may also result in removal of the content and suspension or termination of the account.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2><span class="section-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--firefly)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span> Misrepresentations</h2>
+    <p>Under 17 U.S.C. § 512(f), any person who knowingly materially misrepresents that material is infringing — or that it was removed by mistake or misidentification — may be liable for damages, including costs and attorneys' fees. Please be sure your claim is accurate before sending a notice or counter-notification.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2><span class="section-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--firefly)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span> Relationship to our Terms</h2>
+    <p>This policy is part of, and incorporated into, the <a href="terms.html" style="color:var(--firefly);text-decoration:none;">Firefly Cloud Terms of Service</a>. Uploading content you don't have the right to share violates the Acceptable Use section of those Terms.</p>
+  </div>
+</div>
+</main>
+
+<!-- ── Footer ── -->
+<footer>
+  <p>
+    © 2026 Firefly
+    <span class="sep">·</span>
+    <a href="privacy.html">Privacy</a>
+    <span class="sep">·</span>
+    <a href="terms.html">Terms</a>
+    <span class="sep">·</span>
+    <a href="support.html">Support</a>
+    <span class="sep">·</span>
+    Not affiliated with Riot Games or Apple Inc.
+  </p>
+</footer>
+
+
+<script>
+  // Stars
+  (function() {
+    const sky = document.createElement('div');
+    sky.className = 'stars';
+    document.body.appendChild(sky);
+    for (let i = 0; i < 100; i++) {
+      const el = document.createElement('div');
+      el.className = 'star';
+      const size = (Math.random() * 1.6 + 0.4).toFixed(1);
+      el.style.cssText =
+        'left:' + (Math.random() * 100).toFixed(1) + 'vw;' +
+        'top:' + (Math.random() * 72).toFixed(1) + 'vh;' +
+        'width:' + size + 'px;height:' + size + 'px;' +
+        'opacity:' + (Math.random() * 0.55 + 0.08).toFixed(2);
+      sky.appendChild(el);
+    }
+  })();
+</script>
+
+</body>
+</html>
