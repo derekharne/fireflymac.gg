@@ -3,23 +3,49 @@
     <channel>
         <title>Firefly</title>
         <item>
+            <title>3.0.0</title>
+            <pubDate>Fri, 24 Jul 2026 01:56:45 -0500</pubDate>
+            <sparkle:version>20260724</sparkle:version>
+            <sparkle:shortVersionString>3.0.0</sparkle:shortVersionString>
+            <description><![CDATA[
+                <h2>What's New in v3.0.0</h2>
+                <h3>New</h3>
+                <ul>
+                    <li>Firefly Cloud
+                        <ul>
+                            <li>Cloud Upload & Sharing - Upload any game or clip to Firefly Cloud and instantly get a link to share it with your friendss, duo's or coaches!</li>
+                            <li>Cloud as your primary storage - On selected paid plans you can use Firefly Cloud as your only storage saving valuable SSD space and allowing you to interact with your cloud recordings straight from the Cloud as if they were locally on your disk.</li>
+                            <li>Subscription plans to fit everyone - Firefly Cloud comes with a free option so everyone gets something just by signing in! We also offer paid subscriptions for more generous upload limits and features like hosting Montages and the Primary Storage feature.</li>
+                            <li>Apple first - Firefly Cloud is integrated with Apple for authentication. Simply sign in with your Apple ID athrough Apple'ss  authentication, not ours, and you're done!</li>
+                        </ul>
+                    </li>
+                    <li>League Classic Support
+                        <ul>
+                            <li>Initial support for League Classic implemented, games will record and can be uploaded to Firefly Cloud but not all features may be working yet.</li>
+                        </ul>
+                    </li>
+                </ul>
+                <h3>Bugfixes</h3>
+                <ul>
+                    <li>Some UI fixes in lists and light mode.</li>
+                </ul>
+                <p>For the full detailed changelog please visit <a href="https://fireflymac.gg/changelog.html">https://fireflymac.gg/changelog.html</a>.</p>
+            ]]></description>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://fireflymac.gg/downloads/Firefly-3.0.0.dmg" length="10543816" type="application/octet-stream" sparkle:edSignature="LrFrVbKQd5tPHY1zrrW9BHNEikk6j8WrrcRg0L6Uq2KLwBjj3cg6XrhAbTM9JI1E0X9QimgcPWhhpXiNgGmbAg=="/>
+            <sparkle:deltas>
+                <enclosure url="https://fireflymac.gg/downloads/Firefly20260724-20260717.delta" sparkle:deltaFrom="20260717" length="4348022" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="975840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="mjRgq5A4JGuv9NCsh4kT4huw1YHfghMVMhrPwi83/qHh4lP1oWUJRUwpIFppEgfpNUh5cjG7c9mZv2FwH2TmAA=="/>
+                <enclosure url="https://fireflymac.gg/downloads/Firefly20260724-20260713.delta" sparkle:deltaFrom="20260713" length="4353442" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="975840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="cECwd8IIAd+jN7CUTPtTDIJ1v/VE3/6zZvaRBwDVCsKJeOQjTlzHEIOCIfBnVyaEyio1PMgUw8gu5Yfe27oYBw=="/>
+                <enclosure url="https://fireflymac.gg/downloads/Firefly20260724-20260710.delta" sparkle:deltaFrom="20260710" length="4426826" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="975840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="bD2cFXE7hu5aGwQ+h7zxEOSXFqtyJm0HGJLoXjUOO9xqxNdMS4mwhrsbkHOfEhZcuQ8pV7h4R8ErH80TbBM/DA=="/>
+                <enclosure url="https://fireflymac.gg/downloads/Firefly20260724-20260620.delta" sparkle:deltaFrom="20260620" length="5010386" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="975840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="AlZU2cMpzGNTIZ/c8++NKLHkhHS0mceQ58XjdJoo5BizapsoyVIfI6CgTY0dG0FRCF4F1hZHaH6+lVDPDTqQBg=="/>
+                <enclosure url="https://fireflymac.gg/downloads/Firefly20260724-20260430.delta" sparkle:deltaFrom="20260430" length="5084510" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="975840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="zryhp9DcocoQZcbBfO+qZv43STMEmOWeqe6YPOL580zA9ZhiegDDnChdY5SnezDrD/76lMoCVMZrBQ9BzezLBQ=="/>
+            </sparkle:deltas>
+        </item>
+        <item>
             <title>2.2.2</title>
             <pubDate>Fri, 17 Jul 2026 15:06:24 -0500</pubDate>
             <sparkle:version>20260717</sparkle:version>
             <sparkle:shortVersionString>2.2.2</sparkle:shortVersionString>
-            <description><![CDATA[
-                <h2>What's New in v2.2.2</h2>
-                <h3>Bugfixes</h3>
-                <ul>
-                    <li>Firefly may behave unpredictably when the recordings and or clips folder selected is synced with iCloud Drive. 
-                        <ul>
-                            <li>This is not a supported configuration, this fix prevents users from selecting a folder snycing with iCloud Drive.</li>
-                            <li>If you're currently using an iCloud Drive backed folder we aren't forcing you to change it but we highly recommend taking some time to move it. </li>
-                        </ul>
-                    </li>
-                </ul>
-                <p>For the full detailed changelog please visit <a href="https://fireflymac.gg/changelog.html">https://fireflymac.gg/changelog.html</a>.</p>
-            ]]></description>
             <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
             <enclosure url="https://fireflymac.gg/downloads/Firefly-2.2.2.dmg" length="7877583" type="application/octet-stream" sparkle:edSignature="O00mTMWXcrwnRLY97cNd+IBHINIFob3+73W4v+Yx95NahuyTAzYSz6fuD1uK+fSDeiIo6vTOFxqrtU++e+ZqCA=="/>
             <sparkle:deltas>
@@ -43,21 +69,6 @@
                 <enclosure url="https://fireflymac.gg/downloads/Firefly20260713-20260430.delta" sparkle:deltaFrom="20260430" length="2494078" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="975840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="ag8uJAskQlei7oDo2b6jEa17nuWXhb0ol0yxOk2eRALe+BOOrGBvWFtjDFYjm+UDXzj1faadZTXmp/Oe2Am9Dg=="/>
                 <enclosure url="https://fireflymac.gg/downloads/Firefly20260713-20260414.delta" sparkle:deltaFrom="20260414" length="3700190" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="975840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="u33vqwhJ+oWuDZlStbDEZ/uav4VtMWRU2hIMPZkXVD0ulRxQWgie2OaqZDj2zzLNjPQjSYUl6hEV8yt4XpLmDA=="/>
                 <enclosure url="https://fireflymac.gg/downloads/Firefly20260713-20260407.delta" sparkle:deltaFrom="20260407" length="3756606" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="975840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="9T9DfF9fybWrqyqcLVf0ziEN2P/mzMkbz/6rhm31L8ZOadr5S7KumcfhnyE16ExGNRSs44bR1zcp82P46/R8Cg=="/>
-            </sparkle:deltas>
-        </item>
-        <item>
-            <title>2.2.0</title>
-            <pubDate>Fri, 10 Jul 2026 14:26:10 -0500</pubDate>
-            <sparkle:version>20260710</sparkle:version>
-            <sparkle:shortVersionString>2.2.0</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
-            <enclosure url="https://fireflymac.gg/downloads/Firefly-2.2.0.dmg" length="7823142" type="application/octet-stream" sparkle:edSignature="M1Xdenyhy8VRUzNrduCxahg4m/EZ6xW9XU3WG9JXer4O/tW2Hnb6E2SnF+sQyKc01PX1Etyy7bkcwMSXUcSZAQ=="/>
-            <sparkle:deltas>
-                <enclosure url="https://fireflymac.gg/downloads/Firefly20260710-20260620.delta" sparkle:deltaFrom="20260620" length="1804302" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="975840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="X0ua7agduwMGJcYVR05DXc5WKSoV9NQL+Q5T5IlvxqMwjOCW2s0Yhw6hT2/n8CnwU1jc9SZa4sUHkybEVMGBDQ=="/>
-                <enclosure url="https://fireflymac.gg/downloads/Firefly20260710-20260430.delta" sparkle:deltaFrom="20260430" length="2441234" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="975840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="sjsnO/KiMVdYpCT7Q3EtKOJKWV/JKDQF+qzB0M8T+h/Zc4iuZ0BHP1MtYl4TVBYhqL6eN+2wJzYpCYXldtbaCg=="/>
-                <enclosure url="https://fireflymac.gg/downloads/Firefly20260710-20260414.delta" sparkle:deltaFrom="20260414" length="3640682" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="975840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="c8tVGnQYja3urfgo8OxJtGPXoLagYCc2HCDf9eUfuK28dYqipGG6iAYq5CYCYNbyPast25J+myqgSzLB81MYDw=="/>
-                <enclosure url="https://fireflymac.gg/downloads/Firefly20260710-20260407.delta" sparkle:deltaFrom="20260407" length="3699422" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="975840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="oZYaSV5oL12HSDqhljadI3kTM74Hxbtp3HHwv6RkmrD8A4tRmV301w10Vo5KRB1ZfuSPb3mIfAbPxPr7l00eAg=="/>
-                <enclosure url="https://fireflymac.gg/downloads/Firefly20260710-20260406.delta" sparkle:deltaFrom="20260406" length="3701258" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="975840" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,uk" sparkle:edSignature="2w4VPTVCaS950RABF5WJMBEivflLldUADgGbXMCJ85mjCICWxz0B3lyEhZdWpSHDnithScweRjQfbM4pLG/1DA=="/>
             </sparkle:deltas>
         </item>
     </channel>
