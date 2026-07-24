@@ -109,6 +109,46 @@
     .email-link:hover { background: rgba(201,255,58,0.14); border-color: rgba(201,255,58,0.4); }
     .email-link svg { flex-shrink: 0; }
 
+    /* ── System requirements ── */
+    .requirements {
+      position: relative; z-index: 1;
+      max-width: 620px; margin: 0 auto; padding: 0 24px 120px;
+    }
+    .requirements h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 800; color: #fff; text-align: center;
+      letter-spacing: -0.02em; margin-bottom: 12px;
+    }
+    .requirements > p {
+      text-align: center; color: var(--text-muted);
+      font-size: 0.95rem; line-height: 1.7;
+      max-width: 460px; margin: 0 auto 34px;
+    }
+    .req-table {
+      width: 100%; border-collapse: collapse;
+      background: var(--dark-card);
+      border: 1px solid var(--dark-border);
+      border-radius: 14px; overflow: hidden;
+    }
+    .req-table th, .req-table td {
+      text-align: left; padding: 15px 20px;
+      border-bottom: 1px solid var(--dark-border);
+      font-size: 0.92rem; line-height: 1.5; vertical-align: top;
+    }
+    .req-table tr:last-child th, .req-table tr:last-child td { border-bottom: none; }
+    .req-table th {
+      width: 40%; color: var(--text-muted); font-weight: 600;
+      white-space: nowrap; background: rgba(255,255,255,0.015);
+    }
+    .req-table td { color: var(--text); font-weight: 500; }
+    /* Dim italic scaffolding — replace each with the real spec. */
+    .req-tbd { color: var(--text-muted); font-style: italic; opacity: 0.65; }
+
+    @media (max-width: 480px) {
+      .req-table th, .req-table td { padding: 13px 14px; font-size: 0.86rem; }
+      .req-table th { width: 44%; white-space: normal; }
+    }
+
     /* ── Footer ── */
     footer {
       position: relative; z-index: 1; text-align: center;
@@ -207,8 +247,6 @@
   <ul class="nav-links">
     <li><a href="cloud.html">Firefly Cloud</a></li>
     <li><a href="changelog.html">Changelog</a></li>
-    <li><a href="privacy.html">Privacy</a></li>
-    <li><a href="terms.html">Terms</a></li>
     <li><a href="support.html" class="active" aria-current="page">Support</a></li>
   </ul>
 </nav>
@@ -218,13 +256,29 @@
 <div class="page">
   <div class="badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Support</div>
   <h1>We're here to <span>help.</span></h1>
-  <p>Have a question, found a bug, or just need a hand getting set up? Send us an email and we'll try to help!</p>
+  <p>Have a question, feature suggestion, found a bug, or just need a hand getting set up? Send us an email and we'll try to help!</p>
 
   <a class="email-link" href="mailto:support@fireflymac.gg">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
     support@fireflymac.gg
   </a>
 </div>
+
+<!-- ── System requirements ── -->
+<!-- Scaffolding only: replace each ".req-tbd" value with the real spec. -->
+<section class="requirements" aria-labelledby="sysreq-heading">
+  <h2 id="sysreq-heading">System Requirements</h2>
+  <p>What you'll need to run Firefly and capture your League of Legends games.</p>
+  <table class="req-table">
+    <tbody>
+      <tr><th scope="row">macOS Version</th><td><span class="req-tbd">macOS 15+, we will support all Apple supported macOS versions from 15 onwards. <br><br>macOS 15 support will end November 2028</span></td></tr>
+      <tr><th scope="row">Processor</th><td><span class="req-tbd">Apple Silicon M1+ recommended, we compile for Intel but do no testing against it. Intel support will end when the last macOS version to support it goes EOL</span></td></tr>
+      <tr><th scope="row">Memory</th><td><span class="req-tbd">8GB</span></td></tr>
+      <tr><th scope="row">Storage</th><td><span class="req-tbd">Minimum 5GB free disk space plus room for recordings, the recorder will not run if there is less than 5GB available on the targeted volume even when using Firefly Cloud as your storage as recordings are cached to disk as they are processed and uploaded</span></td></tr>
+      <tr><th scope="row">Internet</th><td><span class="req-tbd">Firefly macOS Application: No internet requirements. <br><br>Firefly Cloud: 15Mbps Download 10Mbps Upload <br><br>Firefly Cloud as Primary Storage: 50Mbps Download 50Mbps Upload recommended</span></td></tr>
+    </tbody>
+  </table>
+</section>
 </main>
 
 <!-- ── Footer ── -->
