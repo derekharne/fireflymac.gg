@@ -13,10 +13,10 @@
                 <ul>
                     <li>Firefly Cloud
                         <ul>
-                            <li>Cloud Upload & Sharing - Upload any game or clip to Firefly Cloud and instantly get a link to share it with your friendss, duo's or coaches!</li>
+                            <li>Cloud Upload & Sharing - Upload any game or clip to Firefly Cloud and instantly get a link to share it with your friends, duos, or coaches!</li>
                             <li>Cloud as your primary storage - On selected paid plans you can use Firefly Cloud as your only storage saving valuable SSD space and allowing you to interact with your cloud recordings straight from the Cloud as if they were locally on your disk.</li>
-                            <li>Subscription plans to fit everyone - Firefly Cloud comes with a free option so everyone gets something just by signing in! We also offer paid subscriptions for more generous upload limits and features like hosting Montages and the Primary Storage feature.</li>
-                            <li>Apple first - Firefly Cloud is integrated with Apple for authentication. Simply sign in with your Apple ID athrough Apple'ss  authentication, not ours, and you're done!</li>
+                            <li>Subscription plans to fit everyone - Firefly Cloud comes with a free option so everyone gets something just by signing in! We also offer paid subscriptions for more generous upload limits and features like hosting montages and the primary storage feature.</li>
+                            <li>Sign in with Apple - No new account or password to create. Just use the Apple ID you already have — Apple handles the login, not us, so your password never reaches our servers.</li>
                         </ul>
                     </li>
                     <li>League Classic Support
@@ -27,7 +27,7 @@
                 </ul>
                 <h3>Bugfixes</h3>
                 <ul>
-                    <li>Some UI fixes in lists and light mode.</li>
+                    <li>Fixed several UI glitches in list views and light mode.</li>
                 </ul>
                 <p>For the full detailed changelog please visit <a href="https://fireflymac.gg/changelog.html">https://fireflymac.gg/changelog.html</a>.</p>
             ]]></description>
