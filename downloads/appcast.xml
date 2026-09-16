@@ -16,7 +16,7 @@
                 <h3>Enhancements</h3>
                 <ul>
                     <li>Montages created while on paid Firefly Cloud plans no longer have a watermark at the end.</li>
-                    <li>The Montage Builder now has buttons to easily merge clips for easier editing.</li>
+                    <li>The Montage Builder now has buttons to merge clips, making editing easier.</li>
                     <li>The Clip Builder now makes it more obvious that the time handles can be dragged to customize clip lengths.</li>
                     <li>Light Mode has received significant enhancements making it more readable and more visually similar to Dark and Firefly themes.</li>
                     <li>Performance improvements.</li>
